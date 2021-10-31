@@ -71,6 +71,48 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-HTTP返回状态" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/10/31/HTTP%E8%BF%94%E5%9B%9E%E7%8A%B6%E6%80%81/" class="article-date">
+  <time class="dt-published" datetime="2021-10-31T13:03:07.000Z" itemprop="datePublished">2021-10-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/10/31/HTTP%E8%BF%94%E5%9B%9E%E7%8A%B6%E6%80%81/">HTTP返回状态</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>   HTTP返回状态有   1xx           表示信息正在处理<br>                                     2xx          表示正常处理完毕，如200 ok，204no Content,206  Partial  Content<br>                                     3xx           重定向，表示要完成请求必须更进一步操作，如301 Move Permanently，302 Found<br>                                     4xx           客户端错误，如400Bad Request  ，403 Forbiden， 404 not Found<br>                                     5xx            服务器错误，服务器未能实现合法的请求<br>解析：200 ok只是服务器接收到了信息而已，就算密码错误等等操作，服务器也会返回200 ok<br>          204no Content，表示：无实体部分的返回。<br>          206  Partial  Content 表示：只返回了部分内容。<br>          301 Move Permanently  表示你的请求的资源信息已经永久变更了。客户端会把新的地址信息返回给你。<br>          400Bad Request 表示：你的请求出现语法错误。<br>          403 Forbiden  表示：你的请求访问被服务器拒绝了。<br>         404 not Found  表示：你输入了错误的资源地址。
+                                 </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/10/31/HTTP%E8%BF%94%E5%9B%9E%E7%8A%B6%E6%80%81/" data-id="ckvf9p00q0000bkvx02d2hr1m" data-title="HTTP返回状态" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%8A%B6%E6%80%81%E7%A0%81/" rel="tag">状态码</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-http协议" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2021/10/31/http%E5%8D%8F%E8%AE%AE/" class="article-date">
@@ -93,12 +135,12 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>http协议是网络客户端与服务器之间传输的基础，http由客户端<br>服务端两个部分组成，其中客户端发送请求给服务端，服务端返回<br>响应给客户端，其中数据是根据URL进行定位的，URL的结构有协议<br>主机：Host，路径：path  查询参数：Query，服务端接收到URL会<br>进行解析并返回相应的数据。HTTP的请求有多种如 GET 获取资源<br>POST:创建资源   put：更新资源    DELETE：删除资源。服务端在接受<br>请求后会返回响应状态码其中特别的几个是400–499为客户端错误<br>就是众所周知的404 not fount  500–599 为服务端错误。http协议是<br>无状态的，如果需要记录状态则需要使用cookie和session保持对话。<br>现在已经有http2了</p>
+        <p>http协议是网络客户端与服务器之间传输的基础，http由客户端<br>服务端两个部分组成，其中客户端发送请求给服务端，服务端返回<br>响应给客户端，其中数据是根据URL进行定位的，URL的结构有协议<br>主机：Host，路径：path  查询参数：Query，服务端接收到URL会<br>进行解析并返回相应的数据。HTTP的请求有多种如 GET 获取资源<br>POST:创建资源   put：更新资源    DELETE：删除资源。服务端在接受<br>请求后会返回响应状态码其中特别的几个是400–499为客户端错误<br>就是众所周知的404 not fount  500–599 为服务端错误。http协议是<br>无状态的，如果需要记录状态则需要使用cookie和session保持对话。<br>get的安全型不如post，传送的数据量get小于post，options请求可以<br>查询服务端可以使用的请求方法</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/10/31/http%E5%8D%8F%E8%AE%AE/" data-id="ckvf6kxuy0000k8vx5ahx0znz" data-title="http协议" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/10/31/http%E5%8D%8F%E8%AE%AE/" data-id="ckvf9p0110003bkvx46w44ku4" data-title="http协议" class="article-share-link">Share</a>
       
       
       
@@ -137,7 +179,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/10/27/%E5%AD%97%E7%AC%A6%E4%B8%B2/" data-id="ckvf6kxv80002k8vxboxof5ol" data-title="字符串" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/10/27/%E5%AD%97%E7%AC%A6%E4%B8%B2/" data-id="ckvf9p0140005bkvx4tw5h5sx" data-title="字符串" class="article-share-link">Share</a>
       
       
       
@@ -178,7 +220,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/10/24/%E6%8C%87%E9%92%88%E5%8F%8A%E5%85%B6%E7%94%A8%E6%B3%95/" data-id="ckvf6kxva0003k8vx75zmfsjj" data-title="指针及其用法" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/10/24/%E6%8C%87%E9%92%88%E5%8F%8A%E5%85%B6%E7%94%A8%E6%B3%95/" data-id="ckvf9p0150007bkvxd0c96myr" data-title="指针及其用法" class="article-share-link">Share</a>
       
       
       
@@ -217,7 +259,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/10/20/%E6%95%B0%E7%BB%84%E7%9A%84%E8%BF%90%E7%94%A8/" data-id="ckvf6kxvc0005k8vxbnikf93h" data-title="数组的运用" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/10/20/%E6%95%B0%E7%BB%84%E7%9A%84%E8%BF%90%E7%94%A8/" data-id="ckvf9p0160008bkvxdf0v2j3c" data-title="数组的运用" class="article-share-link">Share</a>
       
       
       
@@ -256,7 +298,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/09/27/%E7%8C%9C%E6%95%B0%E5%AD%97%E6%B8%B8%E6%88%8F/" data-id="ckvf6kxvj0006k8vx4r6ud3i2" data-title="猜数字游戏" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/09/27/%E7%8C%9C%E6%95%B0%E5%AD%97%E6%B8%B8%E6%88%8F/" data-id="ckvf9p01b0009bkvx0cwm5xvg" data-title="猜数字游戏" class="article-share-link">Share</a>
       
       
       
@@ -297,7 +339,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/09/27/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/" data-id="ckvf6kxvb0004k8vxfhu85xq7" data-title="我的第一个博客" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/09/27/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/" data-id="ckvf9p0130004bkvx9m3of4ri" data-title="我的第一个博客" class="article-share-link">Share</a>
       
       
       
@@ -348,7 +390,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/09/18/hello-world/" data-id="ckvf6kxv60001k8vx52fe9fqr" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/09/18/hello-world/" data-id="ckvf9p00x0001bkvx6d87aqrr" data-title="Hello World" class="article-share-link">Share</a>
       
       
       
@@ -370,9 +412,23 @@
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%8A%B6%E6%80%81%E7%A0%81/" rel="tag">状态码</a></li></ul>
+    </div>
+  </div>
+
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/%E7%8A%B6%E6%80%81%E7%A0%81/" style="font-size: 10px;">状态码</a>
+    </div>
+  </div>
+
   
     
   <div class="widget-wrap">
@@ -391,6 +447,10 @@
       <ul>
         
           <li>
+            <a href="/2021/10/31/HTTP%E8%BF%94%E5%9B%9E%E7%8A%B6%E6%80%81/">HTTP返回状态</a>
+          </li>
+        
+          <li>
             <a href="/2021/10/31/http%E5%8D%8F%E8%AE%AE/">http协议</a>
           </li>
         
@@ -404,10 +464,6 @@
         
           <li>
             <a href="/2021/10/20/%E6%95%B0%E7%BB%84%E7%9A%84%E8%BF%90%E7%94%A8/">数组的运用</a>
-          </li>
-        
-          <li>
-            <a href="/2021/09/27/%E7%8C%9C%E6%95%B0%E5%AD%97%E6%B8%B8%E6%88%8F/">猜数字游戏</a>
           </li>
         
       </ul>

@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-10-31T11:57:55.047Z</updated>
+  <updated>2021-10-31T13:23:40.289Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,11 +17,34 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>HTTP返回状态</title>
+    <link href="http://example.com/2021/10/31/HTTP%E8%BF%94%E5%9B%9E%E7%8A%B6%E6%80%81/"/>
+    <id>http://example.com/2021/10/31/HTTP%E8%BF%94%E5%9B%9E%E7%8A%B6%E6%80%81/</id>
+    <published>2021-10-31T13:03:07.000Z</published>
+    <updated>2021-10-31T13:23:40.289Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;   HTTP返回状态有   1xx           表示信息正在处理&lt;br&gt;                                     2xx          表示正常处理完毕，如200 ok，204no Content,206  Partial </summary>
+        
+      
+    
+    
+    
+    
+    <category term="状态码" scheme="http://example.com/tags/%E7%8A%B6%E6%80%81%E7%A0%81/"/>
+    
+  </entry>
+  
+  <entry>
     <title>http协议</title>
     <link href="http://example.com/2021/10/31/http%E5%8D%8F%E8%AE%AE/"/>
     <id>http://example.com/2021/10/31/http%E5%8D%8F%E8%AE%AE/</id>
     <published>2021-10-31T11:43:35.000Z</published>
-    <updated>2021-10-31T11:57:55.047Z</updated>
+    <updated>2021-10-31T12:40:12.529Z</updated>
     
     
       
