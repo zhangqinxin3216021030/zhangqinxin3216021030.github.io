@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-10-27T12:45:48.259Z</updated>
+  <updated>2021-10-31T11:57:55.047Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>http协议</title>
+    <link href="http://example.com/2021/10/31/http%E5%8D%8F%E8%AE%AE/"/>
+    <id>http://example.com/2021/10/31/http%E5%8D%8F%E8%AE%AE/</id>
+    <published>2021-10-31T11:43:35.000Z</published>
+    <updated>2021-10-31T11:57:55.047Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;http协议是网络客户端与服务器之间传输的基础，http由客户端&lt;br&gt;服务端两个部分组成，其中客户端发送请求给服务端，服务端返回&lt;br&gt;响应给客户端，其中数据是根据URL进行定位的，URL的结构有协议&lt;br&gt;主机：Host，路径：path </summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>字符串</title>
