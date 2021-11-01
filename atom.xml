@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-10-31T13:23:40.289Z</updated>
+  <updated>2021-11-01T13:26:26.889Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>HTTP报文</title>
+    <link href="http://example.com/2021/11/01/HTTP%E6%8A%A5%E6%96%87/"/>
+    <id>http://example.com/2021/11/01/HTTP%E6%8A%A5%E6%96%87/</id>
+    <published>2021-11-01T11:44:58.000Z</published>
+    <updated>2021-11-01T13:26:26.889Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;HTTP的报文有很多种，其中有请求报文、响应报文、通用报文&lt;br&gt;实体报文。&lt;br&gt;     首先我们来讲一讲请求报文，请求报文由请求行、请求头部、&lt;br&gt;空行、请求数据4个部分组成。&lt;br&gt;    </summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>HTTP返回状态</title>
