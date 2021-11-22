@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-11-01T13:26:26.889Z</updated>
+  <updated>2021-11-21T13:25:06.473Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,99 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>sql注入基础</title>
+    <link href="http://example.com/2021/11/21/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/"/>
+    <id>http://example.com/2021/11/21/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/</id>
+    <published>2021-11-21T11:22:46.000Z</published>
+    <updated>2021-11-21T13:25:06.473Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;pre&gt;&lt;code&gt;                额，感觉进度有点慢了，现在才读到sql，不过我会好好赶进度的。话不多说
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;接下来我们来了解一下sql注入的具体流程。&lt;br&gt;              </summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>php与mysql</title>
+    <link href="http://example.com/2021/11/17/php%E4%B8%8Emysql/"/>
+    <id>http://example.com/2021/11/17/php%E4%B8%8Emysql/</id>
+    <published>2021-11-17T08:20:15.000Z</published>
+    <updated>2021-11-17T12:04:09.164Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;pre&gt;&lt;code&gt;     MySQL 是跟 PHP 配套使用的最流行的开源数据库系统。下面我讲给大家
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;介绍一些我学习到的mysql语句例如：mysql&amp;gt; set names utf8;语句 set names</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>PHP命名空间</title>
+    <link href="http://example.com/2021/11/14/PHP%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/"/>
+    <id>http://example.com/2021/11/14/PHP%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/</id>
+    <published>2021-11-14T13:10:32.000Z</published>
+    <updated>2021-11-15T13:50:52.376Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;pre&gt;&lt;code&gt;    下面进入到php学习了，这一章我们主要来讲一讲PHP的命名空间。因为我本身
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;学习到这一块的时候也不怎么懂。所以就想记录一下，话不多说，现在开始。&lt;br&gt;        </summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>格式化的输入输出</title>
+    <link href="http://example.com/2021/11/13/%E6%A0%BC%E5%BC%8F%E5%8C%96%E7%9A%84%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/"/>
+    <id>http://example.com/2021/11/13/%E6%A0%BC%E5%BC%8F%E5%8C%96%E7%9A%84%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/</id>
+    <published>2021-11-13T08:37:44.000Z</published>
+    <updated>2021-11-13T09:07:35.976Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;pre&gt;&lt;code&gt; 目前在学习php，但是由于c语言的知识未完善，那么我们就来补充一下
+c语言的知识，以免忘记。%d是我们学习c原因一开始就接触的东西，
+ %9d的意思是输出向右移九位，那么显然%-9d的意思是向左移九位。
+ </summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>HTTP报文</title>

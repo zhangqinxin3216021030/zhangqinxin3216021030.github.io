@@ -4,17 +4,17 @@
   <meta charset="utf-8">
   
   
-  <title>字符串 | Hexo</title>
+  <title>PHP命名空间 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="字符串顾名思义是由字符组成，但其特殊之处在于其是以\0结尾的一串数字，0标准着字符串的结束，但它不是字符串。同时字符串是以字符数组的形式存在，同时以数组或指针的形式访问。我们可以这样定义一个字符串      char word[]&#x3D;”Hellow”;                                 也可以        char  line[10] &#x3D;”Hellow”这里line">
+  <meta name="description" content="下面进入到php学习了，这一章我们主要来讲一讲PHP的命名空间。因为我本身  学习到这一块的时候也不怎么懂。所以就想记录一下，话不多说，现在开始。         首先：1、什么是命名空间？命名空间是一种封装事物的方法。        2、 命名空间的作用是什么？命名空间可以用来解决类名或使用应用程序名的冲突问题。在B站老师讲的一个很好的例子，为什么我们要用命名空间，因为在大企业中，一个程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="字符串">
-<meta property="og:url" content="http://example.com/2021/10/27/%E5%AD%97%E7%AC%A6%E4%B8%B2/index.html">
+<meta property="og:title" content="PHP命名空间">
+<meta property="og:url" content="http://example.com/2021/11/14/PHP%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="字符串顾名思义是由字符组成，但其特殊之处在于其是以\0结尾的一串数字，0标准着字符串的结束，但它不是字符串。同时字符串是以字符数组的形式存在，同时以数组或指针的形式访问。我们可以这样定义一个字符串      char word[]&#x3D;”Hellow”;                                 也可以        char  line[10] &#x3D;”Hellow”这里line">
+<meta property="og:description" content="下面进入到php学习了，这一章我们主要来讲一讲PHP的命名空间。因为我本身  学习到这一块的时候也不怎么懂。所以就想记录一下，话不多说，现在开始。         首先：1、什么是命名空间？命名空间是一种封装事物的方法。        2、 命名空间的作用是什么？命名空间可以用来解决类名或使用应用程序名的冲突问题。在B站老师讲的一个很好的例子，为什么我们要用命名空间，因为在大企业中，一个程">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-10-27T12:37:08.000Z">
-<meta property="article:modified_time" content="2021-10-27T12:45:48.259Z">
+<meta property="article:published_time" content="2021-11-14T13:10:32.000Z">
+<meta property="article:modified_time" content="2021-11-15T13:50:52.376Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -73,10 +73,10 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-字符串" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-PHP命名空间" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2021/10/27/%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="article-date">
-  <time class="dt-published" datetime="2021-10-27T12:37:08.000Z" itemprop="datePublished">2021-10-27</time>
+    <a href="/2021/11/14/PHP%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/" class="article-date">
+  <time class="dt-published" datetime="2021-11-14T13:10:32.000Z" itemprop="datePublished">2021-11-14</time>
 </a>
     
   </div>
@@ -87,7 +87,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      字符串
+      PHP命名空间
     </h1>
   
 
@@ -95,12 +95,14 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p> 字符串顾名思义是由字符组成，但其特殊之处在于其是以\0<br>结尾的一串数字，0标准着字符串的结束，但它不是字符串。同<br>时字符串是以字符数组的形式存在，同时以数组或指针的形式访问。<br>我们可以这样定义一个字符串      char word[]=”Hellow”;<br>                                 也可以        char  line[10] =”Hellow”<br>这里line后面的中括号里的10代表10个字节的意思，后面的字符串<br>不能超过这个字节数。同时字符串还有很多与之对应的函数如strlen,<br>其作用是返回字符串的长度；strcmp，其作用是比较两个字符串。<br>字符串还有很多运用等着我们去挖掘，我们下期再见。</p>
+        <pre><code>    下面进入到php学习了，这一章我们主要来讲一讲PHP的命名空间。因为我本身
+</code></pre>
+<p>学习到这一块的时候也不怎么懂。所以就想记录一下，话不多说，现在开始。<br>         首先：1、什么是命名空间？命名空间是一种封装事物的方法。<br>        2、 命名空间的作用是什么？命名空间可以用来解决类名或使用应用程序名的冲突问题。<br>在B站老师讲的一个很好的例子，为什么我们要用命名空间，因为在大企业中，一个程序，<br>需要用到很多代码，这其中就牵扯到很多的类。若一个类或程序名有冲突的话，那么若要<br>改的话，将会影响到使用这个类的人，从而造成不便。<br>       3、命名空间的要求：使用命名空间要求使用namespace关键字。所以代码都可以存在<br>于命名空间中，但是只有三种代码会受到影响：类、常量、函数。命名空间格式：namespace  sad；<br> sad是空间名。声明命名空间的语法，是PHP的第一行代码，前面不能有任何东西。在定义一个<br>命名空间后，使用require_once(“./文件名.php’’);进行包含。在包含文件后对于空间中定义的类<br>需要new 命名空间名\类名()。需要用到命名空间名\的是变量、函数、类，其他的都是全局变量，<br>不需要用到命名空间名的前缀。<br>             子命名空间<br>1、相当于文件夹中的子文件夹，可以这么写a/a1/a.txt（目录).区别一下目录的分割符号用（/）,空间路径<br>的分割符用（\）,举例:APP\Home\controller.(空间)。在某一子空间下的类，用的时候要把前面的空间名都<br>写出来。全局代码已经不受空间影响。<br> 2、命名空间是虚拟空间.<br>3、总空间（根空间）用app\home\controller可以创建</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/10/27/%E5%AD%97%E7%AC%A6%E4%B8%B2/" data-id="ckvgtqskx0004lkvx6na37pql" data-title="字符串" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/11/14/PHP%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/" data-id="ckwarurq10000s0vxfpm0b3d5" data-title="PHP命名空间" class="article-share-link">Share</a>
       
       
       
@@ -110,19 +112,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2021/10/31/http%E5%8D%8F%E8%AE%AE/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2021/11/17/php%E4%B8%8Emysql/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          http协议
+          php与mysql
         
       </div>
     </a>
   
   
-    <a href="/2021/10/24/%E6%8C%87%E9%92%88%E5%8F%8A%E5%85%B6%E7%94%A8%E6%B3%95/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2021/11/13/%E6%A0%BC%E5%BC%8F%E5%8C%96%E7%9A%84%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">指针及其用法</div>
+      <div class="article-nav-title">格式化的输入输出</div>
     </a>
   
 </nav>

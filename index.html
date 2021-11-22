@@ -71,6 +71,177 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-sql注入基础" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/11/21/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/" class="article-date">
+  <time class="dt-published" datetime="2021-11-21T11:22:46.000Z" itemprop="datePublished">2021-11-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/11/21/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/">sql注入基础</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <pre><code>                额，感觉进度有点慢了，现在才读到sql，不过我会好好赶进度的。话不多说
+</code></pre>
+<p>接下来我们来了解一下sql注入的具体流程。<br>               首先，数据请求有两种方式，其中最常见的就是GET和POST。post一般是输入登入<br>密码什么的。数据库是把我们输入的账号和密码，拼接起来组成一个sql语句，进而在其数据库<br>中查询如账号：admin    密码：123456 那么其转入sql语句就是user=admin&amp;password=123456<br>select *from test where user=”+user+”and password=”+password(大概是这样）<br>PHP中$user=$_POST[‘user’];的意思是获取输入的user的值<br>不能在登入界面上直接输入sql代码，源码是这样的select *from test<br>where user=’select *from test’ and password=’’;<br>因为其拼接的sql会把其当中字符串，使其失去作用.那<br>怎么办呢(user=’select *from test’)首先我们应该把单引号闭合就变成了<br>user=’’;select *from test #’   后加一个’使其闭合,;使其语句结束。后加注释符#把’and password=’’注释掉<br>但是这样已经无法查询，为什么呢。因为在php中无法执行两个select语句我们可以使用union连接两个select语句<br>不过注意union查询联合两个select，查询返回的个数前后应相等。这样就不用;了   这样就变成了<br>‘union select *from test#(union前后查询同表可用）这是已知表名的情况下。接下来我将介绍在全部未知的情况下<br>如何进行sql注入（get方式）。首先我们应判断有没有注入点，我们应用?id=1’进行判断’这里是制造错误，若出现错误<br>说明这是存在sql注入漏洞的。<br>说一说sql注入的流程吧：1、判断有没有注入点<br>                                        2、查询数据库<br>                                        3、查询表<br>                                        4、查询列<br>                                        5、查询数据(flag)<br>判断完可以进行sql注入后，我们应该查询数据库名了。url?id=1’ union   因为我们要用到union联合查询<br>而union的条件是前后的字段相同。这里我们可以用到一个语句 order by ,order by 是进行升序排列的语句<br>其有一个特点,若超过其所拥有的字段，其就会报错。那么我们可以order by1，order by2 进行一个个测试<br>若报错就说明该数据库的表为该数-1，这样知道了字段数后我们就可以进行union联合查询了。<br>?id=1’ union select datebase(),1,1  –+ 这里进行逐一解释<br> 1’是进行闭合；<br>select datebase()可以查询该服务器的数据库名；<br>–+相当于后面的注释是一种固定语法 。<br>这样我们就可以查到该数据库名了，假设数据库名是zhang，接下来该查表了<br>这里大神给我了一个函数 group_concat(table_name)<br>这样的话我们就可以运用该函数         url?id=1’ union select group_concat(table_name)from information_schema<br>.tables where table_schema=’zhang’ ,1,1–+    这里假设查到的表名是users和test。<br>这样的话我们就查到表名了，接下来是查列名，其查询的方式和查表名差不多<br>url?id=1’ union select group_concat(colnum_name)from information_schema ‘colnum’<br>where   table_name=’user’ and table_schema=’zhang’1,1 –+ 这里假设查到的列名为id,name,password<br>接下来就是查数据了 url?id=1’ union select id,name,password from users –+   这样就可以查到所有登入信息了。<br>大概就是如此。往后我就给大家介绍更多sql注入方法。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/11/21/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/" data-id="ckwarurq90002s0vx5it9gr1s" data-title="sql注入基础" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-php与mysql" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/11/17/php%E4%B8%8Emysql/" class="article-date">
+  <time class="dt-published" datetime="2021-11-17T08:20:15.000Z" itemprop="datePublished">2021-11-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/11/17/php%E4%B8%8Emysql/">php与mysql</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <pre><code>     MySQL 是跟 PHP 配套使用的最流行的开源数据库系统。下面我讲给大家
+</code></pre>
+<p>介绍一些我学习到的mysql语句例如：mysql&gt; set names utf8;语句 set names utf8;<br>用于设定数据库编码，让中文可以正常显示。下面是表中的一些设置。<br>         如何创建数据库<br>CREATE DATABASE 语句用于在 MySQL 中创建数据库。实例：$sql = “CREATE DATABASE myDB”;<br>         创建Mysql表<br>CREATE TABLE MyGuests (<br>    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,<br>    firstname VARCHAR(30) NOT NULL,NOT NULL<br>    lastname VARCHAR(30) NOT NULL,<br>    email VARCHAR(50),<br>    reg_date TIMESTAMP<br>)<br>NOT NULL - 每一行都必须含有值（不能为空），null 值是不允许的。<br>DEFAULT value - 设置默认值<br>UNSIGNED - 使用无符号数值类型，0 及正数<br>AUTO INCREMENT - 设置 MySQL 字段的值在新增记录时每次自动增长 1<br>PRIMARY KEY - 设置数据表中每条记录的唯一标识。 通常列的 PRIMARY KEY 设置<br>为 ID 数值，与 AUTO_INCREMENT 一起使用。<br>         下面我讲介绍如何向mysql中插入数据<br>这是一些语法规则：PHP 中 SQL 查询语句必须使用引号；在 SQL 查询语句中的字符串值必须加引号<br>数值的值不需要引号；NULL 值不需要引号。INSERT INTO 语句通常用于向 MySQL 表添加新的记录：<br>INSERT INTO table_name (column1, column2, column3,…)插入列表名称（第一列，第二列，第三列—）<br>VALUES (value1, value2, value3,…)意思是值（值1，值2， 值3）等。插入时分别写出第一列，第二列，<br>第三列的值，例如$sql = “INSERT INTO MyGuests (firstname, lastname, email)<br>VALUES (‘John’, ‘Doe’, ‘<a href="mailto:&#x6a;&#111;&#104;&#x6e;&#x40;&#x65;&#120;&#97;&#109;&#x70;&#108;&#101;&#x2e;&#x63;&#111;&#x6d;">&#x6a;&#111;&#104;&#x6e;&#x40;&#x65;&#120;&#97;&#109;&#x70;&#108;&#101;&#x2e;&#x63;&#111;&#x6d;</a>‘)”;要注意的是每个sql语句要用分号隔开。<br>          从mysql中读取数据<br>SELECT 语句用于从数据表中读取数据：例如SELECT column_name(s) FROM table_name；<br>我们可以使用 * 号来读取所有数据表中的字段：SELECT * FROM table_name。<br>WHERE 子句用于提取满足指定标准的的记录。例子如下<br>$result = mysqli_query($con,”SELECT * FROM PersonsWHERE FirstName=’Peter’”);<br>while($row = mysqli_fetch_array($result))<br>{<br>    echo $row[‘FirstName’] . “ “ . $row[‘LastName’];<br>    echo “<br>“;<br>ORDER BY 关键词默认对记录进行升序排序。如果你想降序排序，请使用 DESC 关键字。实例如下<br>$result = mysqli_query($con,”SELECT * FROM Persons ORDER BY age”);<br>while($row = mysqli_fetch_array($result))<br>{<br>    echo $row[‘FirstName’];<br>    echo “ “ . $row[‘LastName’];<br>    echo “ “ . $row[‘Age’];<br>    echo “<br>“;<br>}<br>UPDATE 语句用于更新数据库表中已存在的记录。UPDATE 语法中的 WHERE 子句。WHERE 子句规定了哪些记录需要更新。<br>如果您想省去 WHERE 子句，所有的记录都会被更新。<br>mysqli_query($con,”UPDATE Persons SET Age=36<br>WHERE FirstName=’Peter’ AND LastName=’Griffin’”);<br>DELETE FROM 语句用于从数据库表中删除记录。DELETE 语法中的 WHERE 子句。WHERE 子句规定了哪些记录需要删除。<br>如果您想省去 WHERE 子句，所有的记录都会被删除！<br>mysqli_query($con,”DELETE FROM Persons WHERE LastName=’Griffin’”);（注意：关于Griffin的一整个数据都被删除了）</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/11/17/php%E4%B8%8Emysql/" data-id="ckwarurq80001s0vxfly66bzz" data-title="php与mysql" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-PHP命名空间" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/11/14/PHP%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/" class="article-date">
+  <time class="dt-published" datetime="2021-11-14T13:10:32.000Z" itemprop="datePublished">2021-11-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/11/14/PHP%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/">PHP命名空间</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <pre><code>    下面进入到php学习了，这一章我们主要来讲一讲PHP的命名空间。因为我本身
+</code></pre>
+<p>学习到这一块的时候也不怎么懂。所以就想记录一下，话不多说，现在开始。<br>         首先：1、什么是命名空间？命名空间是一种封装事物的方法。<br>        2、 命名空间的作用是什么？命名空间可以用来解决类名或使用应用程序名的冲突问题。<br>在B站老师讲的一个很好的例子，为什么我们要用命名空间，因为在大企业中，一个程序，<br>需要用到很多代码，这其中就牵扯到很多的类。若一个类或程序名有冲突的话，那么若要<br>改的话，将会影响到使用这个类的人，从而造成不便。<br>       3、命名空间的要求：使用命名空间要求使用namespace关键字。所以代码都可以存在<br>于命名空间中，但是只有三种代码会受到影响：类、常量、函数。命名空间格式：namespace  sad；<br> sad是空间名。声明命名空间的语法，是PHP的第一行代码，前面不能有任何东西。在定义一个<br>命名空间后，使用require_once(“./文件名.php’’);进行包含。在包含文件后对于空间中定义的类<br>需要new 命名空间名\类名()。需要用到命名空间名\的是变量、函数、类，其他的都是全局变量，<br>不需要用到命名空间名的前缀。<br>             子命名空间<br>1、相当于文件夹中的子文件夹，可以这么写a/a1/a.txt（目录).区别一下目录的分割符号用（/）,空间路径<br>的分割符用（\）,举例:APP\Home\controller.(空间)。在某一子空间下的类，用的时候要把前面的空间名都<br>写出来。全局代码已经不受空间影响。<br> 2、命名空间是虚拟空间.<br>3、总空间（根空间）用app\home\controller可以创建</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/11/14/PHP%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/" data-id="ckwarurq10000s0vxfpm0b3d5" data-title="PHP命名空间" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-格式化的输入输出" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/11/13/%E6%A0%BC%E5%BC%8F%E5%8C%96%E7%9A%84%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/" class="article-date">
+  <time class="dt-published" datetime="2021-11-13T08:37:44.000Z" itemprop="datePublished">2021-11-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/11/13/%E6%A0%BC%E5%BC%8F%E5%8C%96%E7%9A%84%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/">格式化的输入输出</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <pre><code> 目前在学习php，但是由于c语言的知识未完善，那么我们就来补充一下
+c语言的知识，以免忘记。%d是我们学习c原因一开始就接触的东西，
+ %9d的意思是输出向右移九位，那么显然%-9d的意思是向左移九位。
+  当我们printf（%9.2d）时，.2d代表保留小数点后面两位。注意%9.2d
+  后面的小数点也占两位，那么就是说小数点前面7位（包括小数点）小数点 
+ 后面两位。我就罗列几个特殊的吧。scanf中（%*d）代表跳过几个整行形
+   那么%*5c就表示跳过5个字符。在scanf中%d与%i都是输入整数，但是%i相比
+ %d更具有优势，因为%d只输入的是10进制的整数，而%i可以输入不同进制的
+ 整数。大概就是这些了，接下来我将更新php的内容了。
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/11/13/%E6%A0%BC%E5%BC%8F%E5%8C%96%E7%9A%84%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/" data-id="ckwarurqa0003s0vxaop48qvn" data-title="格式化的输入输出" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-HTTP报文" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2021/11/01/HTTP%E6%8A%A5%E6%96%87/" class="article-date">
@@ -310,138 +481,12 @@
 
 
   
-    <article id="post-猜数字游戏" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/09/27/%E7%8C%9C%E6%95%B0%E5%AD%97%E6%B8%B8%E6%88%8F/" class="article-date">
-  <time class="dt-published" datetime="2021-09-27T13:19:14.000Z" itemprop="datePublished">2021-09-27</time>
-</a>
+
+
+  <nav id="page-nav">
     
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/09/27/%E7%8C%9C%E6%95%B0%E5%AD%97%E6%B8%B8%E6%88%8F/">猜数字游戏</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>如何用c语言创立一个猜数字游戏呢<br>   首先确立变量<br>      int a；<br>      int b；<br>在这里我们要用到do-while循环，同时值得注意的是<br>不同于平常我们在开头用#include&lt;stdlib.h&gt;还有<br>#include&lt;time.h&gt;        在这里srand（time（0））是<br>创立一个随机数；我们用int a=rand（）给a赋值<br>我们应该在do-while，在do-while中用scanf给b赋值<br>if做为判断设多种情况啊a<b  a>b a=b 等多种情况<br>大概就是如此咯。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/09/27/%E7%8C%9C%E6%95%B0%E5%AD%97%E6%B8%B8%E6%88%8F/" data-id="ckvgtqsl2000alkvx3zfy4ycy" data-title="猜数字游戏" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-我的第一个博客" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/09/27/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/" class="article-date">
-  <time class="dt-published" datetime="2021-09-26T16:03:07.000Z" itemprop="datePublished">2021-09-27</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/09/27/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/">我的第一个博客</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <pre><code>      如何用c语言创立一个从1到n的九九乘法表呢？
-</code></pre>
-<p> 首先我们要设置参数，设为<br>        int a；<br>        int b;<br>        int n;<br>    赋值scanf（”%d“，n）<br>  在这里我们要用到for循环<br>for（a=1;a&lt;=n;a++)<br>      for(b=1;b&lt;=a;b++){<br>          printf(“%d*%d=%d,a,b,a*b)<br>       如果我们要换行的话，我们可以在for循环的结尾加上一个printf（”\n”)<br>         这样我们就可以创立一个从1到n的乘法表了哦。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/09/27/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/" data-id="ckvgtqsky0005lkvx1037bbih" data-title="我的第一个博客" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/09/18/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2021-09-18T02:01:00.291Z" itemprop="datePublished">2021-09-18</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/09/18/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/09/18/hello-world/" data-id="ckvgtqskv0003lkvx8zwa1hyw" data-title="Hello World" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+  </nav>
 
 </section>
         
@@ -486,23 +531,23 @@
       <ul>
         
           <li>
+            <a href="/2021/11/21/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/">sql注入基础</a>
+          </li>
+        
+          <li>
+            <a href="/2021/11/17/php%E4%B8%8Emysql/">php与mysql</a>
+          </li>
+        
+          <li>
+            <a href="/2021/11/14/PHP%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/">PHP命名空间</a>
+          </li>
+        
+          <li>
+            <a href="/2021/11/13/%E6%A0%BC%E5%BC%8F%E5%8C%96%E7%9A%84%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/">格式化的输入输出</a>
+          </li>
+        
+          <li>
             <a href="/2021/11/01/HTTP%E6%8A%A5%E6%96%87/">HTTP报文</a>
-          </li>
-        
-          <li>
-            <a href="/2021/10/31/HTTP%E8%BF%94%E5%9B%9E%E7%8A%B6%E6%80%81/">HTTP返回状态</a>
-          </li>
-        
-          <li>
-            <a href="/2021/10/31/http%E5%8D%8F%E8%AE%AE/">http协议</a>
-          </li>
-        
-          <li>
-            <a href="/2021/10/27/%E5%AD%97%E7%AC%A6%E4%B8%B2/">字符串</a>
-          </li>
-        
-          <li>
-            <a href="/2021/10/24/%E6%8C%87%E9%92%88%E5%8F%8A%E5%85%B6%E7%94%A8%E6%B3%95/">指针及其用法</a>
           </li>
         
       </ul>

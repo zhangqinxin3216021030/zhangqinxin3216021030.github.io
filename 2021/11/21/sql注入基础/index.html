@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>sql注入基础 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="额，感觉进度有点慢了，现在才读到sql，不过我会好好赶进度的。话不多说  接下来我们来了解一下sql注入的具体流程。               首先，数据请求有两种方式，其中最常见的就是GET和POST。post一般是输入登入密码什么的。数据库是把我们输入的账号和密码，拼接起来组成一个sql语句，进而在其数据库中查询如账号：admin    密码：123456 那">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sql注入基础">
+<meta property="og:url" content="http://example.com/2021/11/21/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="额，感觉进度有点慢了，现在才读到sql，不过我会好好赶进度的。话不多说  接下来我们来了解一下sql注入的具体流程。               首先，数据请求有两种方式，其中最常见的就是GET和POST。post一般是输入登入密码什么的。数据库是把我们输入的账号和密码，拼接起来组成一个sql语句，进而在其数据库中查询如账号：admin    密码：123456 那">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-11-21T11:22:46.000Z">
+<meta property="article:modified_time" content="2021-11-21T13:25:06.473Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-sql注入基础" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/11/21/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/" class="article-date">
+  <time class="dt-published" datetime="2021-11-21T11:22:46.000Z" itemprop="datePublished">2021-11-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      sql注入基础
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <pre><code>                额，感觉进度有点慢了，现在才读到sql，不过我会好好赶进度的。话不多说
+</code></pre>
+<p>接下来我们来了解一下sql注入的具体流程。<br>               首先，数据请求有两种方式，其中最常见的就是GET和POST。post一般是输入登入<br>密码什么的。数据库是把我们输入的账号和密码，拼接起来组成一个sql语句，进而在其数据库<br>中查询如账号：admin    密码：123456 那么其转入sql语句就是user=admin&amp;password=123456<br>select *from test where user=”+user+”and password=”+password(大概是这样）<br>PHP中$user=$_POST[‘user’];的意思是获取输入的user的值<br>不能在登入界面上直接输入sql代码，源码是这样的select *from test<br>where user=’select *from test’ and password=’’;<br>因为其拼接的sql会把其当中字符串，使其失去作用.那<br>怎么办呢(user=’select *from test’)首先我们应该把单引号闭合就变成了<br>user=’’;select *from test #’   后加一个’使其闭合,;使其语句结束。后加注释符#把’and password=’’注释掉<br>但是这样已经无法查询，为什么呢。因为在php中无法执行两个select语句我们可以使用union连接两个select语句<br>不过注意union查询联合两个select，查询返回的个数前后应相等。这样就不用;了   这样就变成了<br>‘union select *from test#(union前后查询同表可用）这是已知表名的情况下。接下来我将介绍在全部未知的情况下<br>如何进行sql注入（get方式）。首先我们应判断有没有注入点，我们应用?id=1’进行判断’这里是制造错误，若出现错误<br>说明这是存在sql注入漏洞的。<br>说一说sql注入的流程吧：1、判断有没有注入点<br>                                        2、查询数据库<br>                                        3、查询表<br>                                        4、查询列<br>                                        5、查询数据(flag)<br>判断完可以进行sql注入后，我们应该查询数据库名了。url?id=1’ union   因为我们要用到union联合查询<br>而union的条件是前后的字段相同。这里我们可以用到一个语句 order by ,order by 是进行升序排列的语句<br>其有一个特点,若超过其所拥有的字段，其就会报错。那么我们可以order by1，order by2 进行一个个测试<br>若报错就说明该数据库的表为该数-1，这样知道了字段数后我们就可以进行union联合查询了。<br>?id=1’ union select datebase(),1,1  –+ 这里进行逐一解释<br> 1’是进行闭合；<br>select datebase()可以查询该服务器的数据库名；<br>–+相当于后面的注释是一种固定语法 。<br>这样我们就可以查到该数据库名了，假设数据库名是zhang，接下来该查表了<br>这里大神给我了一个函数 group_concat(table_name)<br>这样的话我们就可以运用该函数         url?id=1’ union select group_concat(table_name)from information_schema<br>.tables where table_schema=’zhang’ ,1,1–+    这里假设查到的表名是users和test。<br>这样的话我们就查到表名了，接下来是查列名，其查询的方式和查表名差不多<br>url?id=1’ union select group_concat(colnum_name)from information_schema ‘colnum’<br>where   table_name=’user’ and table_schema=’zhang’1,1 –+ 这里假设查到的列名为id,name,password<br>接下来就是查数据了 url?id=1’ union select id,name,password from users –+   这样就可以查到所有登入信息了。<br>大概就是如此。往后我就给大家介绍更多sql注入方法。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/11/21/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/" data-id="ckwarurq90002s0vx5it9gr1s" data-title="sql注入基础" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2021/11/17/php%E4%B8%8Emysql/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">php与mysql</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%8A%B6%E6%80%81%E7%A0%81/" rel="tag">状态码</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/%E7%8A%B6%E6%80%81%E7%A0%81/" style="font-size: 10px;">状态码</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/11/21/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/">sql注入基础</a>
+          </li>
+        
+          <li>
+            <a href="/2021/11/17/php%E4%B8%8Emysql/">php与mysql</a>
+          </li>
+        
+          <li>
+            <a href="/2021/11/14/PHP%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/">PHP命名空间</a>
+          </li>
+        
+          <li>
+            <a href="/2021/11/13/%E6%A0%BC%E5%BC%8F%E5%8C%96%E7%9A%84%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/">格式化的输入输出</a>
+          </li>
+        
+          <li>
+            <a href="/2021/11/01/HTTP%E6%8A%A5%E6%96%87/">HTTP报文</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

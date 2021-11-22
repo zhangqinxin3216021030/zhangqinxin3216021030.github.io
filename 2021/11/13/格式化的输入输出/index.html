@@ -4,17 +4,17 @@
   <meta charset="utf-8">
   
   
-  <title>字符串 | Hexo</title>
+  <title>格式化的输入输出 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="字符串顾名思义是由字符组成，但其特殊之处在于其是以\0结尾的一串数字，0标准着字符串的结束，但它不是字符串。同时字符串是以字符数组的形式存在，同时以数组或指针的形式访问。我们可以这样定义一个字符串      char word[]&#x3D;”Hellow”;                                 也可以        char  line[10] &#x3D;”Hellow”这里line">
+  <meta name="description" content="目前在学习php，但是由于c语言的知识未完善，那么我们就来补充一下 c语言的知识，以免忘记。%d是我们学习c原因一开始就接触的东西，  %9d的意思是输出向右移九位，那么显然%-9d的意思是向左移九位。   当我们printf（%9.2d）时，.2d代表保留小数点后面两位。注意%9.2d   后面的小数点也占两位，那么就是说小数点前面7位（包括小数点）小数点   后面两位。我就罗列几个特殊的吧。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="字符串">
-<meta property="og:url" content="http://example.com/2021/10/27/%E5%AD%97%E7%AC%A6%E4%B8%B2/index.html">
+<meta property="og:title" content="格式化的输入输出">
+<meta property="og:url" content="http://example.com/2021/11/13/%E6%A0%BC%E5%BC%8F%E5%8C%96%E7%9A%84%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="字符串顾名思义是由字符组成，但其特殊之处在于其是以\0结尾的一串数字，0标准着字符串的结束，但它不是字符串。同时字符串是以字符数组的形式存在，同时以数组或指针的形式访问。我们可以这样定义一个字符串      char word[]&#x3D;”Hellow”;                                 也可以        char  line[10] &#x3D;”Hellow”这里line">
+<meta property="og:description" content="目前在学习php，但是由于c语言的知识未完善，那么我们就来补充一下 c语言的知识，以免忘记。%d是我们学习c原因一开始就接触的东西，  %9d的意思是输出向右移九位，那么显然%-9d的意思是向左移九位。   当我们printf（%9.2d）时，.2d代表保留小数点后面两位。注意%9.2d   后面的小数点也占两位，那么就是说小数点前面7位（包括小数点）小数点   后面两位。我就罗列几个特殊的吧。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-10-27T12:37:08.000Z">
-<meta property="article:modified_time" content="2021-10-27T12:45:48.259Z">
+<meta property="article:published_time" content="2021-11-13T08:37:44.000Z">
+<meta property="article:modified_time" content="2021-11-13T09:07:35.976Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -73,10 +73,10 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-字符串" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-格式化的输入输出" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2021/10/27/%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="article-date">
-  <time class="dt-published" datetime="2021-10-27T12:37:08.000Z" itemprop="datePublished">2021-10-27</time>
+    <a href="/2021/11/13/%E6%A0%BC%E5%BC%8F%E5%8C%96%E7%9A%84%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/" class="article-date">
+  <time class="dt-published" datetime="2021-11-13T08:37:44.000Z" itemprop="datePublished">2021-11-13</time>
 </a>
     
   </div>
@@ -87,7 +87,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      字符串
+      格式化的输入输出
     </h1>
   
 
@@ -95,12 +95,21 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p> 字符串顾名思义是由字符组成，但其特殊之处在于其是以\0<br>结尾的一串数字，0标准着字符串的结束，但它不是字符串。同<br>时字符串是以字符数组的形式存在，同时以数组或指针的形式访问。<br>我们可以这样定义一个字符串      char word[]=”Hellow”;<br>                                 也可以        char  line[10] =”Hellow”<br>这里line后面的中括号里的10代表10个字节的意思，后面的字符串<br>不能超过这个字节数。同时字符串还有很多与之对应的函数如strlen,<br>其作用是返回字符串的长度；strcmp，其作用是比较两个字符串。<br>字符串还有很多运用等着我们去挖掘，我们下期再见。</p>
+        <pre><code> 目前在学习php，但是由于c语言的知识未完善，那么我们就来补充一下
+c语言的知识，以免忘记。%d是我们学习c原因一开始就接触的东西，
+ %9d的意思是输出向右移九位，那么显然%-9d的意思是向左移九位。
+  当我们printf（%9.2d）时，.2d代表保留小数点后面两位。注意%9.2d
+  后面的小数点也占两位，那么就是说小数点前面7位（包括小数点）小数点 
+ 后面两位。我就罗列几个特殊的吧。scanf中（%*d）代表跳过几个整行形
+   那么%*5c就表示跳过5个字符。在scanf中%d与%i都是输入整数，但是%i相比
+ %d更具有优势，因为%d只输入的是10进制的整数，而%i可以输入不同进制的
+ 整数。大概就是这些了，接下来我将更新php的内容了。
+</code></pre>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/10/27/%E5%AD%97%E7%AC%A6%E4%B8%B2/" data-id="ckvgtqskx0004lkvx6na37pql" data-title="字符串" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/11/13/%E6%A0%BC%E5%BC%8F%E5%8C%96%E7%9A%84%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/" data-id="ckwarurqa0003s0vxaop48qvn" data-title="格式化的输入输出" class="article-share-link">Share</a>
       
       
       
@@ -110,19 +119,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2021/10/31/http%E5%8D%8F%E8%AE%AE/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2021/11/14/PHP%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          http协议
+          PHP命名空间
         
       </div>
     </a>
   
   
-    <a href="/2021/10/24/%E6%8C%87%E9%92%88%E5%8F%8A%E5%85%B6%E7%94%A8%E6%B3%95/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2021/11/01/HTTP%E6%8A%A5%E6%96%87/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">指针及其用法</div>
+      <div class="article-nav-title">HTTP报文</div>
     </a>
   
 </nav>
