@@ -4,17 +4,17 @@
   <meta charset="utf-8">
   
   
-  <title>指针及其用法 | Hexo</title>
+  <title>sql注入及文件上传1 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="指针作为c语言的重点，其作用是十分巨大的。其最主要的作用  是可以指向对应变量的地址，进而通过地址对该变量进行修改。其最基本是书写形式是这样的        int *p&#x3D;&amp;i；数组与指针有着秒不可言的关系。可以说数组是一种特殊的指针。指针在指向数组时不用&amp;，但指向数组对应的某个值时要&amp;。在遍历数组时可以用指针进行遍历。同时指针间也可以进行加减运算。这就是指针辣。">
+  <meta name="description" content="老师说其实我还没有养成用GitHub记录学习的习惯。现在才记录并不代表我现在才开始学习今天我们就从sql基础和文件上传基础讲起。   在sql的第5关中,我们只要输入了正常的内容就会显示you are in并不回显有用的信息。这时侯我们之前的做法就不管用了，这里我们就运用到了报错注入的内容。这里做一个有关于函数的知识补充1、报错注入(报错注入实际上是两个查询的嵌套,类似于select…(selec">
 <meta property="og:type" content="article">
-<meta property="og:title" content="指针及其用法">
-<meta property="og:url" content="http://example.com/2021/10/24/%E6%8C%87%E9%92%88%E5%8F%8A%E5%85%B6%E7%94%A8%E6%B3%95/index.html">
+<meta property="og:title" content="sql注入及文件上传1">
+<meta property="og:url" content="http://example.com/2022/02/13/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A01/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="指针作为c语言的重点，其作用是十分巨大的。其最主要的作用  是可以指向对应变量的地址，进而通过地址对该变量进行修改。其最基本是书写形式是这样的        int *p&#x3D;&amp;i；数组与指针有着秒不可言的关系。可以说数组是一种特殊的指针。指针在指向数组时不用&amp;，但指向数组对应的某个值时要&amp;。在遍历数组时可以用指针进行遍历。同时指针间也可以进行加减运算。这就是指针辣。">
+<meta property="og:description" content="老师说其实我还没有养成用GitHub记录学习的习惯。现在才记录并不代表我现在才开始学习今天我们就从sql基础和文件上传基础讲起。   在sql的第5关中,我们只要输入了正常的内容就会显示you are in并不回显有用的信息。这时侯我们之前的做法就不管用了，这里我们就运用到了报错注入的内容。这里做一个有关于函数的知识补充1、报错注入(报错注入实际上是两个查询的嵌套,类似于select…(selec">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-10-24T12:03:06.000Z">
-<meta property="article:modified_time" content="2021-10-24T12:15:02.537Z">
+<meta property="article:published_time" content="2022-02-13T14:33:41.000Z">
+<meta property="article:modified_time" content="2022-02-13T14:48:07.939Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -73,10 +73,10 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-指针及其用法" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-sql注入及文件上传1" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2021/10/24/%E6%8C%87%E9%92%88%E5%8F%8A%E5%85%B6%E7%94%A8%E6%B3%95/" class="article-date">
-  <time class="dt-published" datetime="2021-10-24T12:03:06.000Z" itemprop="datePublished">2021-10-24</time>
+    <a href="/2022/02/13/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A01/" class="article-date">
+  <time class="dt-published" datetime="2022-02-13T14:33:41.000Z" itemprop="datePublished">2022-02-13</time>
 </a>
     
   </div>
@@ -87,7 +87,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      指针及其用法
+      sql注入及文件上传1
     </h1>
   
 
@@ -95,14 +95,12 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <pre><code> 指针作为c语言的重点，其作用是十分巨大的。其最主要的作用
-</code></pre>
-<p>是可以指向对应变量的地址，进而通过地址对该变量进行修改。其<br>最基本是书写形式是这样的        int *p=&amp;i；<br>数组与指针有着秒不可言的关系。可以说数组是一种特殊的指针。<br>指针在指向数组时不用&amp;，但指向数组对应的某个值时要&amp;。在遍历<br>数组时可以用指针进行遍历。同时指针间也可以进行加减运算。这就<br>是指针辣。</p>
+        <p>老师说其实我还没有养成用GitHub记录学习的习惯。现在才记录并不代表我现在才开始学习<br>今天我们就从sql基础和文件上传基础讲起。<br>   在sql的第5关中,我们只要输入了正常的内容就会显示you are in并不回显有用的信息。这时<br>侯我们之前的做法就不管用了，这里我们就运用到了报错注入的内容。这里做一个有关于函数<br>的知识补充1、报错注入(报错注入实际上是两个查询的嵌套,类似于select…(select…)系统会<br>先查括号里面的,再差括号外面的。<br>报错注入的几个重要函数<br>1、rand()随机函数,返回0到1的某个值<br>2、floor(a)取整函数,返回小于等于a,且最接近a的整数<br>3、count()聚合函数也称计数函数,返回查询对象总数。<br>4、group by clause分组语句,按照查询结果分组，通过报错来显示具体的信息<br>具体的报错注入的原理大家可以在csdn上进行查阅，那里比我讲的更加详细。通过报错注入我们可以<br>将数据库等信息显示出来。<br>   接下来是文件上传的第一关<br>    文件上传顾名思义就是把文件上传到目标位置就算成功，在upload labs中第一关是十分简单的，我们只要<br>通过burpsuite将文件后缀名改成可上传的后缀名即可。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/10/24/%E6%8C%87%E9%92%88%E5%8F%8A%E5%85%B6%E7%94%A8%E6%B3%95/" data-id="ckvgtqsl10009lkvx97a60yn2" data-title="指针及其用法" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/02/13/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A01/" data-id="ckzwmn0bn0000csvxfn6gektu" data-title="sql注入及文件上传1" class="article-share-link">Share</a>
       
       
       
@@ -112,19 +110,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2021/10/27/%E5%AD%97%E7%AC%A6%E4%B8%B2/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2022/02/15/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A02/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          字符串
+          sql注入及文件上传2
         
       </div>
     </a>
   
   
-    <a href="/2021/10/20/%E6%95%B0%E7%BB%84%E7%9A%84%E8%BF%90%E7%94%A8/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2021/11/21/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">数组的运用</div>
+      <div class="article-nav-title">sql注入基础</div>
     </a>
   
 </nav>

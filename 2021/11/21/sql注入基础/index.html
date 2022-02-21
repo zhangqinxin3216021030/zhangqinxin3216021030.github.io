@@ -14,7 +14,7 @@
 <meta property="og:description" content="额，感觉进度有点慢了，现在才读到sql，不过我会好好赶进度的。话不多说  接下来我们来了解一下sql注入的具体流程。               首先，数据请求有两种方式，其中最常见的就是GET和POST。post一般是输入登入密码什么的。数据库是把我们输入的账号和密码，拼接起来组成一个sql语句，进而在其数据库中查询如账号：admin    密码：123456 那">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-11-21T11:22:46.000Z">
-<meta property="article:modified_time" content="2021-11-21T13:25:06.473Z">
+<meta property="article:modified_time" content="2021-11-23T05:03:38.438Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -97,7 +97,7 @@
       
         <pre><code>                额，感觉进度有点慢了，现在才读到sql，不过我会好好赶进度的。话不多说
 </code></pre>
-<p>接下来我们来了解一下sql注入的具体流程。<br>               首先，数据请求有两种方式，其中最常见的就是GET和POST。post一般是输入登入<br>密码什么的。数据库是把我们输入的账号和密码，拼接起来组成一个sql语句，进而在其数据库<br>中查询如账号：admin    密码：123456 那么其转入sql语句就是user=admin&amp;password=123456<br>select *from test where user=”+user+”and password=”+password(大概是这样）<br>PHP中$user=$_POST[‘user’];的意思是获取输入的user的值<br>不能在登入界面上直接输入sql代码，源码是这样的select *from test<br>where user=’select *from test’ and password=’’;<br>因为其拼接的sql会把其当中字符串，使其失去作用.那<br>怎么办呢(user=’select *from test’)首先我们应该把单引号闭合就变成了<br>user=’’;select *from test #’   后加一个’使其闭合,;使其语句结束。后加注释符#把’and password=’’注释掉<br>但是这样已经无法查询，为什么呢。因为在php中无法执行两个select语句我们可以使用union连接两个select语句<br>不过注意union查询联合两个select，查询返回的个数前后应相等。这样就不用;了   这样就变成了<br>‘union select *from test#(union前后查询同表可用）这是已知表名的情况下。接下来我将介绍在全部未知的情况下<br>如何进行sql注入（get方式）。首先我们应判断有没有注入点，我们应用?id=1’进行判断’这里是制造错误，若出现错误<br>说明这是存在sql注入漏洞的。<br>说一说sql注入的流程吧：1、判断有没有注入点<br>                                        2、查询数据库<br>                                        3、查询表<br>                                        4、查询列<br>                                        5、查询数据(flag)<br>判断完可以进行sql注入后，我们应该查询数据库名了。url?id=1’ union   因为我们要用到union联合查询<br>而union的条件是前后的字段相同。这里我们可以用到一个语句 order by ,order by 是进行升序排列的语句<br>其有一个特点,若超过其所拥有的字段，其就会报错。那么我们可以order by1，order by2 进行一个个测试<br>若报错就说明该数据库的表为该数-1，这样知道了字段数后我们就可以进行union联合查询了。<br>?id=1’ union select datebase(),1,1  –+ 这里进行逐一解释<br> 1’是进行闭合；<br>select datebase()可以查询该服务器的数据库名；<br>–+相当于后面的注释是一种固定语法 。<br>这样我们就可以查到该数据库名了，假设数据库名是zhang，接下来该查表了<br>这里大神给我了一个函数 group_concat(table_name)<br>这样的话我们就可以运用该函数         url?id=1’ union select group_concat(table_name)from information_schema<br>.tables where table_schema=’zhang’ ,1,1–+    这里假设查到的表名是users和test。<br>这样的话我们就查到表名了，接下来是查列名，其查询的方式和查表名差不多<br>url?id=1’ union select group_concat(colnum_name)from information_schema ‘colnum’<br>where   table_name=’user’ and table_schema=’zhang’1,1 –+ 这里假设查到的列名为id,name,password<br>接下来就是查数据了 url?id=1’ union select id,name,password from users –+   这样就可以查到所有登入信息了。<br>大概就是如此。往后我就给大家介绍更多sql注入方法。</p>
+<p>接下来我们来了解一下sql注入的具体流程。<br>               首先，数据请求有两种方式，其中最常见的就是GET和POST。post一般是输入登入<br>密码什么的。数据库是把我们输入的账号和密码，拼接起来组成一个sql语句，进而在其数据库<br>中查询如账号：admin    密码：123456 那么其转入sql语句就是user=admin&amp;password=123456<br>select *from test where user=”+user+”and password=”+password(大概是这样）<br>PHP中$user=$_POST[‘user’];的意思是获取输入的user的值<br>不能在登入界面上直接输入sql代码，源码是这样的select *from test<br>where user=’select *from test’ and password=’’;<br>因为其拼接的sql会把其当中字符串，使其失去作用.那<br>怎么办呢(user=’select *from test’)首先我们应该把单引号闭合就变成了<br>user=’’;select *from test #’   后加一个’使其闭合,;使其语句结束。后加注释符#把’and password=’’注释掉<br>但是这样已经无法查询，为什么呢。因为在php中无法执行两个select语句我们可以使用union连接两个select语句<br>不过注意union查询联合两个select，查询返回的个数前后应相等。这样就不用;了   这样就变成了<br>‘union select *from test#(union前后查询同表可用）这是已知表名的情况下。接下来我将介绍在全部未知的情况下<br>如何进行sql注入（get方式）。首先我们应判断有没有注入点，我们应用?id=1’进行判断’这里是制造错误，若出现错误<br>说明这是存在sql注入漏洞的。<br>说一说sql注入的流程吧：1、判断有没有注入点<br>                                        2、查询数据库<br>                                        3、查询表<br>                                        4、查询列<br>                                        5、查询数据(flag)<br>判断完可以进行sql注入后，我们应该查询数据库名了。url?id=1’ union   因为我们要用到union联合查询<br>而union的条件是前后的字段相同。这里我们可以用到一个语句 order by ,order by 是进行升序排列的语句<br>其有一个特点,若超过其所拥有的字段，其就会报错。那么我们可以order by1，order by2 进行一个个测试<br>若报错就说明该数据库的表为该数-1，这样知道了字段数后我们就可以进行union联合查询了。<br>?id=1’ union select datebase(),1,1  –+ 这里进行逐一解释<br> 1’是进行闭合；<br>select datebase()可以查询该服务器的数据库名；<br>–+相当于后面的注释是一种固定语法 。<br>这样我们就可以查到该数据库名了，假设数据库名是zhang，接下来该查表了<br>这里大神给我了一个函数 group_concat(table_name)<br>这样的话我们就可以运用该函数         url?id=1’ union select group_concat(table_name)from information_schema<br>.tables where table_schema=’zhang’ ,1,1–+    这里假设查到的表名是users和test。<br>这样的话我们就查到表名了，接下来是查列名，其查询的方式和查表名差不多<br>url?id=1’ union select group_concat(column_name)from information_schema.columns<br>where   table_name=’表名’ 1,1 –+ 这里假设查到的列名为id,name,password<br>接下来就是查数据了 url?id=1’ union select id,name,password from users –+   这样就可以查到所有登入信息了。<br>大概就是如此。往后我就给大家介绍更多sql注入方法。</p>
 
       
     </div>
@@ -111,6 +111,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2022/02/13/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A01/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          sql注入及文件上传1
+        
+      </div>
+    </a>
   
   
     <a href="/2021/11/17/php%E4%B8%8Emysql/" id="article-nav-older" class="article-nav-link-wrap">
@@ -154,7 +163,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">February 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li></ul>
     </div>
   </div>
 
@@ -167,23 +176,23 @@
       <ul>
         
           <li>
+            <a href="/2022/02/21/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A04/">sql注入及文件上传4</a>
+          </li>
+        
+          <li>
+            <a href="/2022/02/17/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A03/">sql注入及文件上传3</a>
+          </li>
+        
+          <li>
+            <a href="/2022/02/15/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A02/">sql注入及文件上传2</a>
+          </li>
+        
+          <li>
+            <a href="/2022/02/13/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A01/">sql注入及文件上传1</a>
+          </li>
+        
+          <li>
             <a href="/2021/11/21/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/">sql注入基础</a>
-          </li>
-        
-          <li>
-            <a href="/2021/11/17/php%E4%B8%8Emysql/">php与mysql</a>
-          </li>
-        
-          <li>
-            <a href="/2021/11/14/PHP%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/">PHP命名空间</a>
-          </li>
-        
-          <li>
-            <a href="/2021/11/13/%E6%A0%BC%E5%BC%8F%E5%8C%96%E7%9A%84%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/">格式化的输入输出</a>
-          </li>
-        
-          <li>
-            <a href="/2021/11/01/HTTP%E6%8A%A5%E6%96%87/">HTTP报文</a>
           </li>
         
       </ul>
@@ -199,7 +208,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       
-      &copy; 2021 John Doe<br>
+      &copy; 2022 John Doe<br>
       Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

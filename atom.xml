@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-11-21T13:25:06.473Z</updated>
+  <updated>2022-02-21T11:32:45.891Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,11 +17,97 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>sql注入及文件上传4</title>
+    <link href="http://example.com/2022/02/21/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A04/"/>
+    <id>http://example.com/2022/02/21/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A04/</id>
+    <published>2022-02-21T11:25:13.000Z</published>
+    <updated>2022-02-21T11:32:45.891Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;本次介绍当sql过滤掉了or和and我们如何绕过&lt;br&gt;接下来是方法:&lt;br&gt;方法一:||代替or&lt;br&gt;方法二:用双写的方式  比如:password  改写成</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>sql注入及文件上传3</title>
+    <link href="http://example.com/2022/02/17/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A03/"/>
+    <id>http://example.com/2022/02/17/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A03/</id>
+    <published>2022-02-17T15:20:48.000Z</published>
+    <updated>2022-02-17T15:29:35.545Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;pre&gt;&lt;code&gt;这就来说说sql的宽字节注入
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;所谓宽字节注入就是利用两个字节的拼接，把sql题目中带转义的&lt;br&gt;字符组成一个全新的字，简单来说就是过滤转义字符的，那我们应该怎么操作呢，我们可以使用&lt;br&gt;%E6的方式就比如?id=1%E6</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>sql注入及文件上传2</title>
+    <link href="http://example.com/2022/02/15/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A02/"/>
+    <id>http://example.com/2022/02/15/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A02/</id>
+    <published>2022-02-15T15:57:51.000Z</published>
+    <updated>2022-02-15T16:08:40.380Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;本次博客就浅谈一下布尔盲注吧，布尔盲注适用于有回显的情况，但不告诉你真正的信息&lt;br&gt;这里我们补充一下一些函数subustr函数subutr(a,b,c)的意思是从b位置开始，截取a字符串&lt;br&gt;的c位长度，我们可以利用这个函数进行一个个的判断数据库的名字，但由于工程较大我</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>sql注入及文件上传1</title>
+    <link href="http://example.com/2022/02/13/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A01/"/>
+    <id>http://example.com/2022/02/13/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A01/</id>
+    <published>2022-02-13T14:33:41.000Z</published>
+    <updated>2022-02-13T14:48:07.939Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;老师说其实我还没有养成用GitHub记录学习的习惯。现在才记录并不代表我现在才开始学习&lt;br&gt;今天我们就从sql基础和文件上传基础讲起。&lt;br&gt;   在sql的第5关中,我们只要输入了正常的内容就会显示you are</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>sql注入基础</title>
     <link href="http://example.com/2021/11/21/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/"/>
     <id>http://example.com/2021/11/21/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/</id>
     <published>2021-11-21T11:22:46.000Z</published>
-    <updated>2021-11-21T13:25:06.473Z</updated>
+    <updated>2021-11-23T05:03:38.438Z</updated>
     
     
       

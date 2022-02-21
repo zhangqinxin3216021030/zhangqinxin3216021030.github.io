@@ -4,17 +4,17 @@
   <meta charset="utf-8">
   
   
-  <title>指针及其用法 | Hexo</title>
+  <title>sql注入及文件上传3 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="指针作为c语言的重点，其作用是十分巨大的。其最主要的作用  是可以指向对应变量的地址，进而通过地址对该变量进行修改。其最基本是书写形式是这样的        int *p&#x3D;&amp;i；数组与指针有着秒不可言的关系。可以说数组是一种特殊的指针。指针在指向数组时不用&amp;，但指向数组对应的某个值时要&amp;。在遍历数组时可以用指针进行遍历。同时指针间也可以进行加减运算。这就是指针辣。">
+  <meta name="description" content="这就来说说sql的宽字节注入  所谓宽字节注入就是利用两个字节的拼接，把sql题目中带转义的字符组成一个全新的字，简单来说就是过滤转义字符的，那我们应该怎么操作呢，我们可以使用%E6的方式就比如?id&#x3D;1%E6’  若本关中对带引号有转义效果，我们就可以使用这种方式吧类似于\的这种转义字符过滤掉，起到注入的效果。   文件上传3在紧张我们对php文件进行上传时，我们可以使用.htaccess这种形">
 <meta property="og:type" content="article">
-<meta property="og:title" content="指针及其用法">
-<meta property="og:url" content="http://example.com/2021/10/24/%E6%8C%87%E9%92%88%E5%8F%8A%E5%85%B6%E7%94%A8%E6%B3%95/index.html">
+<meta property="og:title" content="sql注入及文件上传3">
+<meta property="og:url" content="http://example.com/2022/02/17/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A03/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="指针作为c语言的重点，其作用是十分巨大的。其最主要的作用  是可以指向对应变量的地址，进而通过地址对该变量进行修改。其最基本是书写形式是这样的        int *p&#x3D;&amp;i；数组与指针有着秒不可言的关系。可以说数组是一种特殊的指针。指针在指向数组时不用&amp;，但指向数组对应的某个值时要&amp;。在遍历数组时可以用指针进行遍历。同时指针间也可以进行加减运算。这就是指针辣。">
+<meta property="og:description" content="这就来说说sql的宽字节注入  所谓宽字节注入就是利用两个字节的拼接，把sql题目中带转义的字符组成一个全新的字，简单来说就是过滤转义字符的，那我们应该怎么操作呢，我们可以使用%E6的方式就比如?id&#x3D;1%E6’  若本关中对带引号有转义效果，我们就可以使用这种方式吧类似于\的这种转义字符过滤掉，起到注入的效果。   文件上传3在紧张我们对php文件进行上传时，我们可以使用.htaccess这种形">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-10-24T12:03:06.000Z">
-<meta property="article:modified_time" content="2021-10-24T12:15:02.537Z">
+<meta property="article:published_time" content="2022-02-17T15:20:48.000Z">
+<meta property="article:modified_time" content="2022-02-17T15:29:35.545Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -73,10 +73,10 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-指针及其用法" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-sql注入及文件上传3" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2021/10/24/%E6%8C%87%E9%92%88%E5%8F%8A%E5%85%B6%E7%94%A8%E6%B3%95/" class="article-date">
-  <time class="dt-published" datetime="2021-10-24T12:03:06.000Z" itemprop="datePublished">2021-10-24</time>
+    <a href="/2022/02/17/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A03/" class="article-date">
+  <time class="dt-published" datetime="2022-02-17T15:20:48.000Z" itemprop="datePublished">2022-02-17</time>
 </a>
     
   </div>
@@ -87,7 +87,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      指针及其用法
+      sql注入及文件上传3
     </h1>
   
 
@@ -95,14 +95,14 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <pre><code> 指针作为c语言的重点，其作用是十分巨大的。其最主要的作用
+        <pre><code>这就来说说sql的宽字节注入
 </code></pre>
-<p>是可以指向对应变量的地址，进而通过地址对该变量进行修改。其<br>最基本是书写形式是这样的        int *p=&amp;i；<br>数组与指针有着秒不可言的关系。可以说数组是一种特殊的指针。<br>指针在指向数组时不用&amp;，但指向数组对应的某个值时要&amp;。在遍历<br>数组时可以用指针进行遍历。同时指针间也可以进行加减运算。这就<br>是指针辣。</p>
+<p>所谓宽字节注入就是利用两个字节的拼接，把sql题目中带转义的<br>字符组成一个全新的字，简单来说就是过滤转义字符的，那我们应该怎么操作呢，我们可以使用<br>%E6的方式就比如?id=1%E6’  若本关中对带引号有转义效果，我们就可以使用这种方式吧类似于<br>\的这种转义字符过滤掉，起到注入的效果。<br>   文件上传3<br>在紧张我们对php文件进行上传时，我们可以使用.htaccess这种形式的文件，这是一种类似中间件的<br>东西，就是把其中所包含的东西当初php来进行编码，我们就可以用这种方式进行绕过。注意我们在用<br>这种方法时需要在.htaccess文件中上传这样一句话SetHandler application/x-httpd-php这就话的<br>意思就是把待会上传的文件当初php文件处理。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/10/24/%E6%8C%87%E9%92%88%E5%8F%8A%E5%85%B6%E7%94%A8%E6%B3%95/" data-id="ckvgtqsl10009lkvx97a60yn2" data-title="指针及其用法" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/02/17/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A03/" data-id="ckzwmn0bv0002csvxfhpceb7p" data-title="sql注入及文件上传3" class="article-share-link">Share</a>
       
       
       
@@ -112,19 +112,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2021/10/27/%E5%AD%97%E7%AC%A6%E4%B8%B2/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2022/02/21/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A04/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          字符串
+          sql注入及文件上传4
         
       </div>
     </a>
   
   
-    <a href="/2021/10/20/%E6%95%B0%E7%BB%84%E7%9A%84%E8%BF%90%E7%94%A8/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2022/02/15/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A02/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">数组的运用</div>
+      <div class="article-nav-title">sql注入及文件上传2</div>
     </a>
   
 </nav>

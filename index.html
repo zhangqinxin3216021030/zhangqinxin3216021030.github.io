@@ -71,6 +71,164 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-sql注入及文件上传4" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/02/21/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A04/" class="article-date">
+  <time class="dt-published" datetime="2022-02-21T11:25:13.000Z" itemprop="datePublished">2022-02-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/02/21/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A04/">sql注入及文件上传4</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>本次介绍当sql过滤掉了or和and我们如何绕过<br>接下来是方法:<br>方法一:||代替or<br>方法二:用双写的方式  比如:password  改写成 passwoorrd系统在对or进行过滤后就变成了password。<br>文件上传<br>当发现.htaccess被禁用时可以改用.user.ini文件进行上传,其和htaccess有相同的效果。但此文件仅被<br>CGI／FastCGI SAPI 处理,同时想要引发 .user.ini 解析漏洞需要三个前提条件步骤:先上传一个以<br>auto_prepend_file=666.jpg为内容的.user.ini文件，然后再上传一个内容为php的一句话的脚本，<br>命名为666.jpg，.user.ini文件里的意思是：所有的php文件都自动包含666.jpg文件。.user.ini<br>相当于一个用户自定义的php.ini。后用蚁剑访问该目录下的php文件即可。简单来说就是和.htaccess差不多。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/02/21/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A04/" data-id="ckzwmn0bw0003csvx2xkf9q4f" data-title="sql注入及文件上传4" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-sql注入及文件上传3" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/02/17/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A03/" class="article-date">
+  <time class="dt-published" datetime="2022-02-17T15:20:48.000Z" itemprop="datePublished">2022-02-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/02/17/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A03/">sql注入及文件上传3</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <pre><code>这就来说说sql的宽字节注入
+</code></pre>
+<p>所谓宽字节注入就是利用两个字节的拼接，把sql题目中带转义的<br>字符组成一个全新的字，简单来说就是过滤转义字符的，那我们应该怎么操作呢，我们可以使用<br>%E6的方式就比如?id=1%E6’  若本关中对带引号有转义效果，我们就可以使用这种方式吧类似于<br>\的这种转义字符过滤掉，起到注入的效果。<br>   文件上传3<br>在紧张我们对php文件进行上传时，我们可以使用.htaccess这种形式的文件，这是一种类似中间件的<br>东西，就是把其中所包含的东西当初php来进行编码，我们就可以用这种方式进行绕过。注意我们在用<br>这种方法时需要在.htaccess文件中上传这样一句话SetHandler application/x-httpd-php这就话的<br>意思就是把待会上传的文件当初php文件处理。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/02/17/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A03/" data-id="ckzwmn0bv0002csvxfhpceb7p" data-title="sql注入及文件上传3" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-sql注入及文件上传2" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/02/15/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A02/" class="article-date">
+  <time class="dt-published" datetime="2022-02-15T15:57:51.000Z" itemprop="datePublished">2022-02-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/02/15/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A02/">sql注入及文件上传2</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>本次博客就浅谈一下布尔盲注吧，布尔盲注适用于有回显的情况，但不告诉你真正的信息<br>这里我们补充一下一些函数subustr函数subutr(a,b,c)的意思是从b位置开始，截取a字符串<br>的c位长度，我们可以利用这个函数进行一个个的判断数据库的名字，但由于工程较大我们需要<br>用到脚步，这就必须要学习python了。我们也可以利用burpsuite，进行爆破。<br>  文件上传二<br>   在一些文件上传中我们可以进行大小写的替换，但这应该是输入比较简单的题目，还有就是如果<br>此系统对数据库的MIME进行检查，我们可以利用burpsuite进行抓包，修改content-type为<br>image/png进行绕过.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/02/15/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A02/" data-id="ckzwmn0bu0001csvx96wj3a3s" data-title="sql注入及文件上传2" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-sql注入及文件上传1" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/02/13/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A01/" class="article-date">
+  <time class="dt-published" datetime="2022-02-13T14:33:41.000Z" itemprop="datePublished">2022-02-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/02/13/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A01/">sql注入及文件上传1</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>老师说其实我还没有养成用GitHub记录学习的习惯。现在才记录并不代表我现在才开始学习<br>今天我们就从sql基础和文件上传基础讲起。<br>   在sql的第5关中,我们只要输入了正常的内容就会显示you are in并不回显有用的信息。这时<br>侯我们之前的做法就不管用了，这里我们就运用到了报错注入的内容。这里做一个有关于函数<br>的知识补充1、报错注入(报错注入实际上是两个查询的嵌套,类似于select…(select…)系统会<br>先查括号里面的,再差括号外面的。<br>报错注入的几个重要函数<br>1、rand()随机函数,返回0到1的某个值<br>2、floor(a)取整函数,返回小于等于a,且最接近a的整数<br>3、count()聚合函数也称计数函数,返回查询对象总数。<br>4、group by clause分组语句,按照查询结果分组，通过报错来显示具体的信息<br>具体的报错注入的原理大家可以在csdn上进行查阅，那里比我讲的更加详细。通过报错注入我们可以<br>将数据库等信息显示出来。<br>   接下来是文件上传的第一关<br>    文件上传顾名思义就是把文件上传到目标位置就算成功，在upload labs中第一关是十分简单的，我们只要<br>通过burpsuite将文件后缀名改成可上传的后缀名即可。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/02/13/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A01/" data-id="ckzwmn0bn0000csvxfn6gektu" data-title="sql注入及文件上传1" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-sql注入基础" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2021/11/21/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/" class="article-date">
@@ -95,7 +253,7 @@
       
         <pre><code>                额，感觉进度有点慢了，现在才读到sql，不过我会好好赶进度的。话不多说
 </code></pre>
-<p>接下来我们来了解一下sql注入的具体流程。<br>               首先，数据请求有两种方式，其中最常见的就是GET和POST。post一般是输入登入<br>密码什么的。数据库是把我们输入的账号和密码，拼接起来组成一个sql语句，进而在其数据库<br>中查询如账号：admin    密码：123456 那么其转入sql语句就是user=admin&amp;password=123456<br>select *from test where user=”+user+”and password=”+password(大概是这样）<br>PHP中$user=$_POST[‘user’];的意思是获取输入的user的值<br>不能在登入界面上直接输入sql代码，源码是这样的select *from test<br>where user=’select *from test’ and password=’’;<br>因为其拼接的sql会把其当中字符串，使其失去作用.那<br>怎么办呢(user=’select *from test’)首先我们应该把单引号闭合就变成了<br>user=’’;select *from test #’   后加一个’使其闭合,;使其语句结束。后加注释符#把’and password=’’注释掉<br>但是这样已经无法查询，为什么呢。因为在php中无法执行两个select语句我们可以使用union连接两个select语句<br>不过注意union查询联合两个select，查询返回的个数前后应相等。这样就不用;了   这样就变成了<br>‘union select *from test#(union前后查询同表可用）这是已知表名的情况下。接下来我将介绍在全部未知的情况下<br>如何进行sql注入（get方式）。首先我们应判断有没有注入点，我们应用?id=1’进行判断’这里是制造错误，若出现错误<br>说明这是存在sql注入漏洞的。<br>说一说sql注入的流程吧：1、判断有没有注入点<br>                                        2、查询数据库<br>                                        3、查询表<br>                                        4、查询列<br>                                        5、查询数据(flag)<br>判断完可以进行sql注入后，我们应该查询数据库名了。url?id=1’ union   因为我们要用到union联合查询<br>而union的条件是前后的字段相同。这里我们可以用到一个语句 order by ,order by 是进行升序排列的语句<br>其有一个特点,若超过其所拥有的字段，其就会报错。那么我们可以order by1，order by2 进行一个个测试<br>若报错就说明该数据库的表为该数-1，这样知道了字段数后我们就可以进行union联合查询了。<br>?id=1’ union select datebase(),1,1  –+ 这里进行逐一解释<br> 1’是进行闭合；<br>select datebase()可以查询该服务器的数据库名；<br>–+相当于后面的注释是一种固定语法 。<br>这样我们就可以查到该数据库名了，假设数据库名是zhang，接下来该查表了<br>这里大神给我了一个函数 group_concat(table_name)<br>这样的话我们就可以运用该函数         url?id=1’ union select group_concat(table_name)from information_schema<br>.tables where table_schema=’zhang’ ,1,1–+    这里假设查到的表名是users和test。<br>这样的话我们就查到表名了，接下来是查列名，其查询的方式和查表名差不多<br>url?id=1’ union select group_concat(colnum_name)from information_schema ‘colnum’<br>where   table_name=’user’ and table_schema=’zhang’1,1 –+ 这里假设查到的列名为id,name,password<br>接下来就是查数据了 url?id=1’ union select id,name,password from users –+   这样就可以查到所有登入信息了。<br>大概就是如此。往后我就给大家介绍更多sql注入方法。</p>
+<p>接下来我们来了解一下sql注入的具体流程。<br>               首先，数据请求有两种方式，其中最常见的就是GET和POST。post一般是输入登入<br>密码什么的。数据库是把我们输入的账号和密码，拼接起来组成一个sql语句，进而在其数据库<br>中查询如账号：admin    密码：123456 那么其转入sql语句就是user=admin&amp;password=123456<br>select *from test where user=”+user+”and password=”+password(大概是这样）<br>PHP中$user=$_POST[‘user’];的意思是获取输入的user的值<br>不能在登入界面上直接输入sql代码，源码是这样的select *from test<br>where user=’select *from test’ and password=’’;<br>因为其拼接的sql会把其当中字符串，使其失去作用.那<br>怎么办呢(user=’select *from test’)首先我们应该把单引号闭合就变成了<br>user=’’;select *from test #’   后加一个’使其闭合,;使其语句结束。后加注释符#把’and password=’’注释掉<br>但是这样已经无法查询，为什么呢。因为在php中无法执行两个select语句我们可以使用union连接两个select语句<br>不过注意union查询联合两个select，查询返回的个数前后应相等。这样就不用;了   这样就变成了<br>‘union select *from test#(union前后查询同表可用）这是已知表名的情况下。接下来我将介绍在全部未知的情况下<br>如何进行sql注入（get方式）。首先我们应判断有没有注入点，我们应用?id=1’进行判断’这里是制造错误，若出现错误<br>说明这是存在sql注入漏洞的。<br>说一说sql注入的流程吧：1、判断有没有注入点<br>                                        2、查询数据库<br>                                        3、查询表<br>                                        4、查询列<br>                                        5、查询数据(flag)<br>判断完可以进行sql注入后，我们应该查询数据库名了。url?id=1’ union   因为我们要用到union联合查询<br>而union的条件是前后的字段相同。这里我们可以用到一个语句 order by ,order by 是进行升序排列的语句<br>其有一个特点,若超过其所拥有的字段，其就会报错。那么我们可以order by1，order by2 进行一个个测试<br>若报错就说明该数据库的表为该数-1，这样知道了字段数后我们就可以进行union联合查询了。<br>?id=1’ union select datebase(),1,1  –+ 这里进行逐一解释<br> 1’是进行闭合；<br>select datebase()可以查询该服务器的数据库名；<br>–+相当于后面的注释是一种固定语法 。<br>这样我们就可以查到该数据库名了，假设数据库名是zhang，接下来该查表了<br>这里大神给我了一个函数 group_concat(table_name)<br>这样的话我们就可以运用该函数         url?id=1’ union select group_concat(table_name)from information_schema<br>.tables where table_schema=’zhang’ ,1,1–+    这里假设查到的表名是users和test。<br>这样的话我们就查到表名了，接下来是查列名，其查询的方式和查表名差不多<br>url?id=1’ union select group_concat(column_name)from information_schema.columns<br>where   table_name=’表名’ 1,1 –+ 这里假设查到的列名为id,name,password<br>接下来就是查数据了 url?id=1’ union select id,name,password from users –+   这样就可以查到所有登入信息了。<br>大概就是如此。往后我就给大家介绍更多sql注入方法。</p>
 
       
     </div>
@@ -323,164 +481,6 @@ c语言的知识，以免忘记。%d是我们学习c原因一开始就接触的�
 
 
   
-    <article id="post-http协议" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/10/31/http%E5%8D%8F%E8%AE%AE/" class="article-date">
-  <time class="dt-published" datetime="2021-10-31T11:43:35.000Z" itemprop="datePublished">2021-10-31</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/10/31/http%E5%8D%8F%E8%AE%AE/">http协议</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>http协议是网络客户端与服务器之间传输的基础，http由客户端<br>服务端两个部分组成，其中客户端发送请求给服务端，服务端返回<br>响应给客户端，其中数据是根据URL进行定位的，URL的结构有协议<br>主机：Host，路径：path  查询参数：Query，服务端接收到URL会<br>进行解析并返回相应的数据。HTTP的请求有多种如 GET 获取资源<br>POST:创建资源   put：更新资源    DELETE：删除资源。服务端在接受<br>请求后会返回响应状态码其中特别的几个是400–499为客户端错误<br>就是众所周知的404 not fount  500–599 为服务端错误。http协议是<br>无状态的，如果需要记录状态则需要使用cookie和session保持对话。<br>get的安全型不如post，传送的数据量get小于post，options请求可以<br>查询服务端可以使用的请求方法</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/10/31/http%E5%8D%8F%E8%AE%AE/" data-id="ckvgtqskz0007lkvx65k377y5" data-title="http协议" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-字符串" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/10/27/%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="article-date">
-  <time class="dt-published" datetime="2021-10-27T12:37:08.000Z" itemprop="datePublished">2021-10-27</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/10/27/%E5%AD%97%E7%AC%A6%E4%B8%B2/">字符串</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p> 字符串顾名思义是由字符组成，但其特殊之处在于其是以\0<br>结尾的一串数字，0标准着字符串的结束，但它不是字符串。同<br>时字符串是以字符数组的形式存在，同时以数组或指针的形式访问。<br>我们可以这样定义一个字符串      char word[]=”Hellow”;<br>                                 也可以        char  line[10] =”Hellow”<br>这里line后面的中括号里的10代表10个字节的意思，后面的字符串<br>不能超过这个字节数。同时字符串还有很多与之对应的函数如strlen,<br>其作用是返回字符串的长度；strcmp，其作用是比较两个字符串。<br>字符串还有很多运用等着我们去挖掘，我们下期再见。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/10/27/%E5%AD%97%E7%AC%A6%E4%B8%B2/" data-id="ckvgtqskx0004lkvx6na37pql" data-title="字符串" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-指针及其用法" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/10/24/%E6%8C%87%E9%92%88%E5%8F%8A%E5%85%B6%E7%94%A8%E6%B3%95/" class="article-date">
-  <time class="dt-published" datetime="2021-10-24T12:03:06.000Z" itemprop="datePublished">2021-10-24</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/10/24/%E6%8C%87%E9%92%88%E5%8F%8A%E5%85%B6%E7%94%A8%E6%B3%95/">指针及其用法</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <pre><code> 指针作为c语言的重点，其作用是十分巨大的。其最主要的作用
-</code></pre>
-<p>是可以指向对应变量的地址，进而通过地址对该变量进行修改。其<br>最基本是书写形式是这样的        int *p=&amp;i；<br>数组与指针有着秒不可言的关系。可以说数组是一种特殊的指针。<br>指针在指向数组时不用&amp;，但指向数组对应的某个值时要&amp;。在遍历<br>数组时可以用指针进行遍历。同时指针间也可以进行加减运算。这就<br>是指针辣。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/10/24/%E6%8C%87%E9%92%88%E5%8F%8A%E5%85%B6%E7%94%A8%E6%B3%95/" data-id="ckvgtqsl10009lkvx97a60yn2" data-title="指针及其用法" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-数组的运用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/10/20/%E6%95%B0%E7%BB%84%E7%9A%84%E8%BF%90%E7%94%A8/" class="article-date">
-  <time class="dt-published" datetime="2021-10-20T13:38:49.000Z" itemprop="datePublished">2021-10-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/10/20/%E6%95%B0%E7%BB%84%E7%9A%84%E8%BF%90%E7%94%A8/">数组的运用</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>数组是c语言中一个很常用的工具，其最主要的功能是<br>可以储存数据。接下我将运用数组解决一些问题。例如<br>如果我们要输入月，输出其对应的日期。如果我们不用<br>数组程序将会十分难写，但我们运用数组后，我们可以<br> int number[]={0,31,30,3130,31,30,31,31,30,31,30,31}<br>将没月的日期数储存到数组中，这样只要我们输入对应的<br>月份，就可以得到对应的日期数了。数组也可以应用到数的<br>比较大小等种种方面。数组的更多应用还得我们继续探索。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/10/20/%E6%95%B0%E7%BB%84%E7%9A%84%E8%BF%90%E7%94%A8/" data-id="ckvgtqsl00008lkvx40ka1p4d" data-title="数组的运用" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -518,7 +518,7 @@ c语言的知识，以免忘记。%d是我们学习c原因一开始就接触的�
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">February 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li></ul>
     </div>
   </div>
 
@@ -531,23 +531,23 @@ c语言的知识，以免忘记。%d是我们学习c原因一开始就接触的�
       <ul>
         
           <li>
+            <a href="/2022/02/21/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A04/">sql注入及文件上传4</a>
+          </li>
+        
+          <li>
+            <a href="/2022/02/17/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A03/">sql注入及文件上传3</a>
+          </li>
+        
+          <li>
+            <a href="/2022/02/15/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A02/">sql注入及文件上传2</a>
+          </li>
+        
+          <li>
+            <a href="/2022/02/13/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A01/">sql注入及文件上传1</a>
+          </li>
+        
+          <li>
             <a href="/2021/11/21/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/">sql注入基础</a>
-          </li>
-        
-          <li>
-            <a href="/2021/11/17/php%E4%B8%8Emysql/">php与mysql</a>
-          </li>
-        
-          <li>
-            <a href="/2021/11/14/PHP%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/">PHP命名空间</a>
-          </li>
-        
-          <li>
-            <a href="/2021/11/13/%E6%A0%BC%E5%BC%8F%E5%8C%96%E7%9A%84%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/">格式化的输入输出</a>
-          </li>
-        
-          <li>
-            <a href="/2021/11/01/HTTP%E6%8A%A5%E6%96%87/">HTTP报文</a>
           </li>
         
       </ul>
@@ -563,7 +563,7 @@ c语言的知识，以免忘记。%d是我们学习c原因一开始就接触的�
   <div class="outer">
     <div id="footer-info" class="inner">
       
-      &copy; 2021 John Doe<br>
+      &copy; 2022 John Doe<br>
       Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
