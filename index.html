@@ -71,6 +71,123 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-命令执行" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/02/25/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" class="article-date">
+  <time class="dt-published" datetime="2022-02-25T15:40:08.000Z" itemprop="datePublished">2022-02-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/02/25/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/">命令执行</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>什么是命令执行漏洞呢？<br>命令执行漏洞就是当应用需要调用一些外部程序去处理内容情况下，就会用到一些执行系统命令的函数，<br>比如php中的system、exec、shell_exec、passthru、popen、popc_popen等，当用户调用这些函<br>数时，将恶意系统命令注入到正常命令中，造成命令执行漏洞；<br>  下面我将以dvwa命令执行来进行说明<br>  low:此级别并未进行什么过滤,我们直接写入常规的命令执行代码即可<br>  payload:127.0.0.1&amp;ipconfig…..<br>  medium:这关过滤了&amp;&amp;和;我们可以使用单&amp;或使用&amp;;&amp;这种方法进行绕过。<br>  payload：127.0.0.1&amp;dir<br>                    127.0.0.1&amp;;&amp;dir<br> high:看似过滤了所以字符但发现|后面有一个空格。这是一个突破点。这个问题以后得注意。<br> payload:127.0.0.1|dir</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/02/25/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" data-id="cl02lchsv0002jcvx1qmqdxlc" data-title="命令执行" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-xss" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/02/24/xss/" class="article-date">
+  <time class="dt-published" datetime="2022-02-24T15:38:33.000Z" itemprop="datePublished">2022-02-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/02/24/xss/">xss</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>XSS又叫CSS  (Cross Site Script) ，跨站脚本攻击。它指的是恶意攻击者往Web页面里插入恶意<br>html代码，当用户浏览该页之时，嵌入其中Web里面的html代码会被执行，从而达到恶意用户的特<br>殊目的。它与SQL注入攻击类似，SQL注入攻击中以SQL语句作为用户输入，从而达到查询/修改/删<br>除数据的目的，而在xss攻击中，通过插入恶意脚本，实现对用户游览器的控制，获取用户的一些信息。<br>注：反射型xss和dom-xss都需要在url加入js代码才能够触发<br>攻击方式:向可输入框添加恶意HTML或JS代码<br>下面以dvwa xss （反射性）为例<br>low:查看源代码我们发现，直接引用了name参数，并没有任何的过滤与检查，存在明显的XSS漏洞。<br>medium:观察源代码我们发现，这里运用了黑名单的思想，使用str_replace函数将输入的<script>删除，<br>因此必须换一种方法，这种防护机制是可以被轻松绕过的，可以采用双写绕过或者大小写混淆绕过。注意str_place<br>是看大小写的.<br>high:这里同样使用了黑名单过滤输入，preg_replace函数用于正则表达式的搜索和替换，上述双写和大小<br>写混淆的方法将不再适用，虽无法使用<script>标签注入XSS代码，但可以通过img,body等标签进行注入。<br>payload1:<script>alert("hhhh")</script><br>payload2:<Script>alert("hhhh")<scRIPt><br>payload3:<img src=0 onerror=alert("xss")> </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/02/24/xss/" data-id="cl02lchsp0001jcvx5v5l2l78" data-title="xss" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-sql注入及文件上传5" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/02/23/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A05/" class="article-date">
+  <time class="dt-published" datetime="2022-02-23T12:52:29.000Z" itemprop="datePublished">2022-02-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/02/23/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A05/">sql注入及文件上传5</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>本次我来介绍堆叠注入<br>(堆叠注入)堆叠注入的意思就是多条语句的注入,并且这两个语句是都可以执行的。<br>比如说;show table;create table sad like users;这两个语句同时生效。目前这个注入方式我还没有完全在<br>实在中用到，等用到再说吧。<br>文件上传<br>我们有时可以通过对源代码分析,发现没有对空格进行过滤,我们可以利用burpsuite将文件后缀加一个空格,就<br>可以成功的绕过。若观察其源代码发现其进行了去空格的操作,这里我们可以进行文件结尾加点的方式进行绕过。<br>若文件限制了文件末的点和空格,我们可以在文件名后面加::$DATA这样进行绕过,其作用于上面几关类似。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/02/23/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A05/" data-id="cl02lchsl0000jcvx3kz75jd1" data-title="sql注入及文件上传5" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-sql注入及文件上传4" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/02/21/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A04/" class="article-date">
@@ -352,135 +469,6 @@
 
 
   
-    <article id="post-格式化的输入输出" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/11/13/%E6%A0%BC%E5%BC%8F%E5%8C%96%E7%9A%84%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/" class="article-date">
-  <time class="dt-published" datetime="2021-11-13T08:37:44.000Z" itemprop="datePublished">2021-11-13</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/11/13/%E6%A0%BC%E5%BC%8F%E5%8C%96%E7%9A%84%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/">格式化的输入输出</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <pre><code> 目前在学习php，但是由于c语言的知识未完善，那么我们就来补充一下
-c语言的知识，以免忘记。%d是我们学习c原因一开始就接触的东西，
- %9d的意思是输出向右移九位，那么显然%-9d的意思是向左移九位。
-  当我们printf（%9.2d）时，.2d代表保留小数点后面两位。注意%9.2d
-  后面的小数点也占两位，那么就是说小数点前面7位（包括小数点）小数点 
- 后面两位。我就罗列几个特殊的吧。scanf中（%*d）代表跳过几个整行形
-   那么%*5c就表示跳过5个字符。在scanf中%d与%i都是输入整数，但是%i相比
- %d更具有优势，因为%d只输入的是10进制的整数，而%i可以输入不同进制的
- 整数。大概就是这些了，接下来我将更新php的内容了。
-</code></pre>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/11/13/%E6%A0%BC%E5%BC%8F%E5%8C%96%E7%9A%84%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/" data-id="ckwarurqa0003s0vxaop48qvn" data-title="格式化的输入输出" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-HTTP报文" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/11/01/HTTP%E6%8A%A5%E6%96%87/" class="article-date">
-  <time class="dt-published" datetime="2021-11-01T11:44:58.000Z" itemprop="datePublished">2021-11-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/11/01/HTTP%E6%8A%A5%E6%96%87/">HTTP报文</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>HTTP的报文有很多种，其中有请求报文、响应报文、通用报文<br>实体报文。<br>     首先我们来讲一讲请求报文，请求报文由请求行、请求头部、<br>空行、请求数据4个部分组成。<br>     1、请求头，请求行由请求方法字段、URL字段和HTTP协议版本<br>3个字段构成。常见的请求方法在上一篇博客中已经有写到。<br>      2、请求头部，请求头部由关键字/值对组成，每行一对，关键字和值用英文冒号“:”分隔。<br>请求头部通知服务器有关于客户端请求的信息，典型的请求头有：<br>     User-Agent：产生请求的浏览器类型。<br>     Accept：客户端可识别的内容类型列表。<br>    Host：请求的主机名，允许多个域名同处一个IP地址，即虚拟主机。<br>      3、空行，最后一个请求头之后是一个空行，发送回车符和换行符，通知服务器以下不再有请求头。<br>      4、请求数据，请求数据不在GET方法中使用，而是在POST方法中使用。POST方法适用于需要客<br>户填写表单的场合。与请求数据相关的最常使用的请求头是Content-Type和Content-Length。<br>—–HTTP响应报文：<br>      HTTP响应报文也由三部分组成，分别是：状态行、消息报头、响应正文。<br>      状态行格式如下：<br>HTTP1.1   200   ok  ，其中HTTP1.1表示服务器HTTP协议的版本；<br>200表示服务器发回的响应状态代码；ok表示状态代码的文本描述。<br>—–HTTP通用报文：<br>Connection：用于表示连接是否可持续。<br>Cache-control：用于控制缓存信息。Cache-control：no-cache//防止缓存过期的网页信息，要求<br>获取最新缓存。<br>cache-control：no-cache，max-age=0，must-revalidate,no-store<br>//no-cache,表示不缓存过期信息。<br>//no-store，不要进行缓存。<br>Transfer-Encoding：<br>表示输出的内容长度不能确定，需要分块处理。对于动态的内容或者在发送数据前不能判定长度的情况下，<br>可以使用分块的方法来传送编码；对于静态的内容或者发送数据可以预判长度的情况下，可以使用 content-length 来标识。<br>Upgrade：升级为其他协议。<br>Via：代理服务器相关信息。<br>Pragma：报文指令。如pragma：no-cache<br>Trailer：报文末端的首部一览。<br>—–实体报文：<br>实体报文是HTTP报文的一部分，如果把HTTP报文看作因特网货运系统中的箱子，那么实体报文就是报文中实际的货物。<br>内容编码：服务器在接受数据后会对其进行编码，并将编码的数据储存在实体报文中，并发送给对方。<br> 2、传输编码：内容编码是对报文的主体进行的可逆变换，是和内容的具体格式细节紧密相关的。<br>传输编码也是作用在实体主体上的可逆变换，但使用它们是由于架构方面的原因，同内容的格式无关。使用传输编码<br>是为了改变报文中的数据在网络上传输的方式。<br>经过内容编码的报文，只是对实体部分进行了编码。而对于传输报文来说，编码的作用作用与整个报文上，报文自身的<br>结构发送了改变。<br> 断点传输：   Range用于断点的传输使用到条件请求，来查看服务器是否修改资源，资源是否过期；服务器资源是否在两次<br>下载之间发生改变，如果发生了变化。通过412状态码知道发生变换，得重新获取响应。如果没发送变化可从断点出重新开始。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/11/01/HTTP%E6%8A%A5%E6%96%87/" data-id="ckvgtqskr0001lkvx4wrc07hc" data-title="HTTP报文" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-HTTP返回状态" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/10/31/HTTP%E8%BF%94%E5%9B%9E%E7%8A%B6%E6%80%81/" class="article-date">
-  <time class="dt-published" datetime="2021-10-31T13:03:07.000Z" itemprop="datePublished">2021-10-31</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/10/31/HTTP%E8%BF%94%E5%9B%9E%E7%8A%B6%E6%80%81/">HTTP返回状态</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>   HTTP返回状态有   1xx           表示信息正在处理<br>                                     2xx          表示正常处理完毕，如200 ok，204no Content,206  Partial  Content<br>                                     3xx           重定向，表示要完成请求必须更进一步操作，如301 Move Permanently，302 Found<br>                                     4xx           客户端错误，如400Bad Request  ，403 Forbiden， 404 not Found<br>                                     5xx            服务器错误，服务器未能实现合法的请求<br>解析：200 ok只是服务器接收到了信息而已，就算密码错误等等操作，服务器也会返回200 ok<br>          204no Content，表示：无实体部分的返回。<br>          206  Partial  Content 表示：只返回了部分内容。<br>          301 Move Permanently  表示你的请求的资源信息已经永久变更了。客户端会把新的地址信息返回给你。<br>          400Bad Request 表示：你的请求出现语法错误。<br>          403 Forbiden  表示：你的请求访问被服务器拒绝了。<br>         404 not Found  表示：你输入了错误的资源地址。
-                                 </p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/10/31/HTTP%E8%BF%94%E5%9B%9E%E7%8A%B6%E6%80%81/" data-id="ckvgtqskj0000lkvx3ht69pjx" data-title="HTTP返回状态" class="article-share-link">Share</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%8A%B6%E6%80%81%E7%A0%81/" rel="tag">状态码</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -531,23 +519,23 @@ c语言的知识，以免忘记。%d是我们学习c原因一开始就接触的�
       <ul>
         
           <li>
+            <a href="/2022/02/25/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/">命令执行</a>
+          </li>
+        
+          <li>
+            <a href="/2022/02/24/xss/">xss</a>
+          </li>
+        
+          <li>
+            <a href="/2022/02/23/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A05/">sql注入及文件上传5</a>
+          </li>
+        
+          <li>
             <a href="/2022/02/21/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A04/">sql注入及文件上传4</a>
           </li>
         
           <li>
             <a href="/2022/02/17/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A03/">sql注入及文件上传3</a>
-          </li>
-        
-          <li>
-            <a href="/2022/02/15/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A02/">sql注入及文件上传2</a>
-          </li>
-        
-          <li>
-            <a href="/2022/02/13/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A01/">sql注入及文件上传1</a>
-          </li>
-        
-          <li>
-            <a href="/2021/11/21/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/">sql注入基础</a>
           </li>
         
       </ul>

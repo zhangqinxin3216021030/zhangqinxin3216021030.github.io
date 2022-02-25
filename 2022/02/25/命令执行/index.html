@@ -4,17 +4,17 @@
   <meta charset="utf-8">
   
   
-  <title>sql注入及文件上传4 | Hexo</title>
+  <title>命令执行 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="本次介绍当sql过滤掉了or和and我们如何绕过接下来是方法:方法一:||代替or方法二:用双写的方式  比如:password  改写成 passwoorrd系统在对or进行过滤后就变成了password。文件上传当发现.htaccess被禁用时可以改用.user.ini文件进行上传,其和htaccess有相同的效果。但此文件仅被CGI／FastCGI SAPI 处理,同时想要引发 .user.">
+  <meta name="description" content="什么是命令执行漏洞呢？命令执行漏洞就是当应用需要调用一些外部程序去处理内容情况下，就会用到一些执行系统命令的函数，比如php中的system、exec、shell_exec、passthru、popen、popc_popen等，当用户调用这些函数时，将恶意系统命令注入到正常命令中，造成命令执行漏洞；  下面我将以dvwa命令执行来进行说明  low:此级别并未进行什么过滤,我们直接写入常规的命令执">
 <meta property="og:type" content="article">
-<meta property="og:title" content="sql注入及文件上传4">
-<meta property="og:url" content="http://example.com/2022/02/21/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A04/index.html">
+<meta property="og:title" content="命令执行">
+<meta property="og:url" content="http://example.com/2022/02/25/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="本次介绍当sql过滤掉了or和and我们如何绕过接下来是方法:方法一:||代替or方法二:用双写的方式  比如:password  改写成 passwoorrd系统在对or进行过滤后就变成了password。文件上传当发现.htaccess被禁用时可以改用.user.ini文件进行上传,其和htaccess有相同的效果。但此文件仅被CGI／FastCGI SAPI 处理,同时想要引发 .user.">
+<meta property="og:description" content="什么是命令执行漏洞呢？命令执行漏洞就是当应用需要调用一些外部程序去处理内容情况下，就会用到一些执行系统命令的函数，比如php中的system、exec、shell_exec、passthru、popen、popc_popen等，当用户调用这些函数时，将恶意系统命令注入到正常命令中，造成命令执行漏洞；  下面我将以dvwa命令执行来进行说明  low:此级别并未进行什么过滤,我们直接写入常规的命令执">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-02-21T11:25:13.000Z">
-<meta property="article:modified_time" content="2022-02-21T11:32:45.891Z">
+<meta property="article:published_time" content="2022-02-25T15:40:08.000Z">
+<meta property="article:modified_time" content="2022-02-25T15:50:14.751Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -73,10 +73,10 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-sql注入及文件上传4" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-命令执行" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2022/02/21/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A04/" class="article-date">
-  <time class="dt-published" datetime="2022-02-21T11:25:13.000Z" itemprop="datePublished">2022-02-21</time>
+    <a href="/2022/02/25/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" class="article-date">
+  <time class="dt-published" datetime="2022-02-25T15:40:08.000Z" itemprop="datePublished">2022-02-25</time>
 </a>
     
   </div>
@@ -87,7 +87,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      sql注入及文件上传4
+      命令执行
     </h1>
   
 
@@ -95,12 +95,12 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>本次介绍当sql过滤掉了or和and我们如何绕过<br>接下来是方法:<br>方法一:||代替or<br>方法二:用双写的方式  比如:password  改写成 passwoorrd系统在对or进行过滤后就变成了password。<br>文件上传<br>当发现.htaccess被禁用时可以改用.user.ini文件进行上传,其和htaccess有相同的效果。但此文件仅被<br>CGI／FastCGI SAPI 处理,同时想要引发 .user.ini 解析漏洞需要三个前提条件步骤:先上传一个以<br>auto_prepend_file=666.jpg为内容的.user.ini文件，然后再上传一个内容为php的一句话的脚本，<br>命名为666.jpg，.user.ini文件里的意思是：所有的php文件都自动包含666.jpg文件。.user.ini<br>相当于一个用户自定义的php.ini。后用蚁剑访问该目录下的php文件即可。简单来说就是和.htaccess差不多。</p>
+        <p>什么是命令执行漏洞呢？<br>命令执行漏洞就是当应用需要调用一些外部程序去处理内容情况下，就会用到一些执行系统命令的函数，<br>比如php中的system、exec、shell_exec、passthru、popen、popc_popen等，当用户调用这些函<br>数时，将恶意系统命令注入到正常命令中，造成命令执行漏洞；<br>  下面我将以dvwa命令执行来进行说明<br>  low:此级别并未进行什么过滤,我们直接写入常规的命令执行代码即可<br>  payload:127.0.0.1&amp;ipconfig…..<br>  medium:这关过滤了&amp;&amp;和;我们可以使用单&amp;或使用&amp;;&amp;这种方法进行绕过。<br>  payload：127.0.0.1&amp;dir<br>                    127.0.0.1&amp;;&amp;dir<br> high:看似过滤了所以字符但发现|后面有一个空格。这是一个突破点。这个问题以后得注意。<br> payload:127.0.0.1|dir</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/02/21/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A04/" data-id="ckzwmn0bw0003csvx2xkf9q4f" data-title="sql注入及文件上传4" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/02/25/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" data-id="cl02lchsv0002jcvx1qmqdxlc" data-title="命令执行" class="article-share-link">Share</a>
       
       
       
@@ -110,19 +110,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2022/02/23/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A05/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          sql注入及文件上传5
-        
-      </div>
-    </a>
   
-  
-    <a href="/2022/02/17/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A03/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2022/02/24/xss/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">sql注入及文件上传3</div>
+      <div class="article-nav-title">xss</div>
     </a>
   
 </nav>
