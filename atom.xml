@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-02-25T15:50:14.751Z</updated>
+  <updated>2022-03-01T05:07:19.258Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CSRF</title>
+    <link href="http://example.com/2022/02/27/CSRF/"/>
+    <id>http://example.com/2022/02/27/CSRF/</id>
+    <published>2022-02-27T15:18:02.000Z</published>
+    <updated>2022-03-01T05:07:19.258Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt; 什么是CSRF呢？&lt;br&gt;CSRF全拼为Cross Site Request</summary>
+        
+      
+    
+    
+    
+    
+    <category term="DVWA最终章" scheme="http://example.com/tags/DVWA%E6%9C%80%E7%BB%88%E7%AB%A0/"/>
+    
+  </entry>
   
   <entry>
     <title>命令执行</title>

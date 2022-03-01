@@ -4,18 +4,19 @@
   <meta charset="utf-8">
   
   
-  <title>sql注入及文件上传2 | Hexo</title>
+  <title>CSRF | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="本次博客就浅谈一下布尔盲注吧，布尔盲注适用于有回显的情况，但不告诉你真正的信息这里我们补充一下一些函数subustr函数subutr(a,b,c)的意思是从b位置开始，截取a字符串的c位长度，我们可以利用这个函数进行一个个的判断数据库的名字，但由于工程较大我们需要用到脚步，这就必须要学习python了。我们也可以利用burpsuite，进行爆破。  文件上传二   在一些文件上传中我们可以进行大小">
+  <meta name="description" content="什么是CSRF呢？CSRF全拼为Cross Site Request Forgery，译为跨站请求伪造。CSRF指攻击者盗用了你的身份，以你的名义发送恶意请求。包括：以你名义发送邮件，发消息，盗取你的账号，甚至于购买商品，虚拟货币转账……造成的问题：个人隐私泄露以及财产安全。下面是CSRF的攻击模型!&lt;&gt;(&#x2F;images&#x2F;1.png)简单来说CSRF攻击就是盗取你的cookie,并且">
 <meta property="og:type" content="article">
-<meta property="og:title" content="sql注入及文件上传2">
-<meta property="og:url" content="http://example.com/2022/02/15/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A02/index.html">
+<meta property="og:title" content="CSRF">
+<meta property="og:url" content="http://example.com/2022/02/27/CSRF/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="本次博客就浅谈一下布尔盲注吧，布尔盲注适用于有回显的情况，但不告诉你真正的信息这里我们补充一下一些函数subustr函数subutr(a,b,c)的意思是从b位置开始，截取a字符串的c位长度，我们可以利用这个函数进行一个个的判断数据库的名字，但由于工程较大我们需要用到脚步，这就必须要学习python了。我们也可以利用burpsuite，进行爆破。  文件上传二   在一些文件上传中我们可以进行大小">
+<meta property="og:description" content="什么是CSRF呢？CSRF全拼为Cross Site Request Forgery，译为跨站请求伪造。CSRF指攻击者盗用了你的身份，以你的名义发送恶意请求。包括：以你名义发送邮件，发消息，盗取你的账号，甚至于购买商品，虚拟货币转账……造成的问题：个人隐私泄露以及财产安全。下面是CSRF的攻击模型!&lt;&gt;(&#x2F;images&#x2F;1.png)简单来说CSRF攻击就是盗取你的cookie,并且">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-02-15T15:57:51.000Z">
-<meta property="article:modified_time" content="2022-02-15T16:08:40.380Z">
+<meta property="article:published_time" content="2022-02-27T15:18:02.000Z">
+<meta property="article:modified_time" content="2022-03-01T05:07:19.258Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="DVWA最终章">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -73,10 +74,10 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-sql注入及文件上传2" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-CSRF" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2022/02/15/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A02/" class="article-date">
-  <time class="dt-published" datetime="2022-02-15T15:57:51.000Z" itemprop="datePublished">2022-02-15</time>
+    <a href="/2022/02/27/CSRF/" class="article-date">
+  <time class="dt-published" datetime="2022-02-27T15:18:02.000Z" itemprop="datePublished">2022-02-27</time>
 </a>
     
   </div>
@@ -87,7 +88,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      sql注入及文件上传2
+      CSRF
     </h1>
   
 
@@ -95,34 +96,27 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>本次博客就浅谈一下布尔盲注吧，布尔盲注适用于有回显的情况，但不告诉你真正的信息<br>这里我们补充一下一些函数subustr函数subutr(a,b,c)的意思是从b位置开始，截取a字符串<br>的c位长度，我们可以利用这个函数进行一个个的判断数据库的名字，但由于工程较大我们需要<br>用到脚步，这就必须要学习python了。我们也可以利用burpsuite，进行爆破。<br>  文件上传二<br>   在一些文件上传中我们可以进行大小写的替换，但这应该是输入比较简单的题目，还有就是如果<br>此系统对数据库的MIME进行检查，我们可以利用burpsuite进行抓包，修改content-type为<br>image/png进行绕过.</p>
+        <p> 什么是CSRF呢？<br>CSRF全拼为Cross Site Request Forgery，译为跨站请求伪造。<br>CSRF指攻击者盗用了你的身份，以你的名义发送恶意请求。<br>包括：以你名义发送邮件，发消息，盗取你的账号，甚至于购买商品，虚拟货币转账……<br>造成的问题：个人隐私泄露以及财产安全。<br>下面是CSRF的攻击模型<br>!&lt;&gt;(/images/1.png)<br>简单来说CSRF攻击就是盗取你的cookie,并且利用你的一些权限去做一些有害的事情。<br>那我们该如何防范CSRF攻击呢？<br>（1）验证 HTTP Referer 字段<br>  (2)在请求地址中添加token并验证<br>  (3)在HTTP头中添加自定义属性并验证</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/02/15/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A02/" data-id="ckzwmn0bu0001csvx96wj3a3s" data-title="sql注入及文件上传2" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/02/27/CSRF/" data-id="cl07o56ep0000kovx04tyeruk" data-title="CSRF" class="article-share-link">Share</a>
       
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DVWA%E6%9C%80%E7%BB%88%E7%AB%A0/" rel="tag">DVWA最终章</a></li></ul>
+
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
-    <a href="/2022/02/17/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A03/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          sql注入及文件上传3
-        
-      </div>
-    </a>
   
-  
-    <a href="/2022/02/13/sql%E6%B3%A8%E5%85%A5%E5%8F%8A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A01/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2022/02/25/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">sql注入及文件上传1</div>
+      <div class="article-nav-title">命令执行</div>
     </a>
   
 </nav>
