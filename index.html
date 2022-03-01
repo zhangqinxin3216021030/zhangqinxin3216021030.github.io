@@ -93,7 +93,7 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p> 什么是CSRF呢？<br>CSRF全拼为Cross Site Request Forgery，译为跨站请求伪造。<br>CSRF指攻击者盗用了你的身份，以你的名义发送恶意请求。<br>包括：以你名义发送邮件，发消息，盗取你的账号，甚至于购买商品，虚拟货币转账……<br>造成的问题：个人隐私泄露以及财产安全。<br>下面是CSRF的攻击模型<br>!&lt;&gt;(/images/1.png)<br>简单来说CSRF攻击就是盗取你的cookie,并且利用你的一些权限去做一些有害的事情。<br>那我们该如何防范CSRF攻击呢？<br>（1）验证 HTTP Referer 字段<br>  (2)在请求地址中添加token并验证<br>  (3)在HTTP头中添加自定义属性并验证</p>
+        <p> 什么是CSRF呢？<br>CSRF全拼为Cross Site Request Forgery，译为跨站请求伪造。<br>CSRF指攻击者盗用了你的身份，以你的名义发送恶意请求。<br>包括：以你名义发送邮件，发消息，盗取你的账号，甚至于购买商品，虚拟货币转账……<br>造成的问题：个人隐私泄露以及财产安全。<br>下面是CSRF的攻击模型<br><img src="/images/1.png"><br>简单来说CSRF攻击就是盗取你的cookie,并且利用你的一些权限去做一些有害的事情。<br>那我们该如何防范CSRF攻击呢？<br>（1）验证 HTTP Referer 字段<br>  (2)在请求地址中添加token并验证<br>  (3)在HTTP头中添加自定义属性并验证</p>
 
       
     </div>
