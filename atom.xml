@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-03-01T05:29:26.471Z</updated>
+  <updated>2022-03-08T13:14:42.178Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>黑盾杯视频学习</title>
+    <link href="http://example.com/2022/03/08/%E9%BB%91%E7%9B%BE%E6%9D%AF%E8%A7%86%E9%A2%91%E5%AD%A6%E4%B9%A0/"/>
+    <id>http://example.com/2022/03/08/%E9%BB%91%E7%9B%BE%E6%9D%AF%E8%A7%86%E9%A2%91%E5%AD%A6%E4%B9%A0/</id>
+    <published>2022-03-08T12:56:18.000Z</published>
+    <updated>2022-03-08T13:14:42.178Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;pre&gt;&lt;code&gt;接下来就是正常的写题步骤了,目前还在学习一些html的解题技巧gogogo。我先来说
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;一下html类似题型的解法,在视频中博主给我们了几条建议：&lt;br&gt;1、打开F12&lt;br&gt;2、针对输入框或输入函数进行定位&lt;br&gt;3、看标签</summary>
+        
+      
+    
+    
+    
+    
+    <category term="观黑盾杯有感" scheme="http://example.com/tags/%E8%A7%82%E9%BB%91%E7%9B%BE%E6%9D%AF%E6%9C%89%E6%84%9F/"/>
+    
+  </entry>
   
   <entry>
     <title>CSRF</title>
@@ -426,27 +451,6 @@ c语言的知识，以免忘记。%d是我们学习c原因一开始就接触的�
     <summary type="html">&lt;pre&gt;&lt;code&gt;      如何用c语言创立一个从1到n的九九乘法表呢？
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt; 首先我们要设置参数，设为&lt;br&gt;        int a；&lt;br&gt;        int b;&lt;br&gt;        int n;&lt;br&gt;   </summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="http://example.com/2021/09/18/hello-world/"/>
-    <id>http://example.com/2021/09/18/hello-world/</id>
-    <published>2021-09-18T02:01:00.291Z</published>
-    <updated>2021-09-18T02:01:00.291Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt;</summary>
         
       
     
