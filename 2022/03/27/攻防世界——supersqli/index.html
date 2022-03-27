@@ -4,22 +4,25 @@
   <meta charset="utf-8">
   
   
-  <title>CSRF | Hexo</title>
+  <title>攻防世界——supersqli | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="什么是CSRF呢？CSRF全拼为Cross Site Request Forgery，译为跨站请求伪造。CSRF指攻击者盗用了你的身份，以你的名义发送恶意请求。包括：以你名义发送邮件，发消息，盗取你的账号，甚至于购买商品，虚拟货币转账……造成的问题：个人隐私泄露以及财产安全。下面是CSRF的攻击模型简单来说CSRF攻击就是盗取你的cookie,并且利用你的一些权限去做一些有害的事情。那我们该如何">
+  <meta name="description" content="本次记录攻防世界——supersqli,看一眼题目我们先输入1发现,没有问题。输入1’发现抱错经过查看wp,发现可以用堆叠注入,那我们就使用堆叠注入。构造payload:1’;show databases;#得到数据库接着爆表,构造payload:1’;show tables;#得到表后面发现select被过滤了,这里我们用到预编译的方法可绕过。payload:1’;prepare pre fro">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CSRF">
-<meta property="og:url" content="http://example.com/2022/02/27/CSRF/index.html">
+<meta property="og:title" content="攻防世界——supersqli">
+<meta property="og:url" content="http://example.com/2022/03/27/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C%E2%80%94%E2%80%94supersqli/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="什么是CSRF呢？CSRF全拼为Cross Site Request Forgery，译为跨站请求伪造。CSRF指攻击者盗用了你的身份，以你的名义发送恶意请求。包括：以你名义发送邮件，发消息，盗取你的账号，甚至于购买商品，虚拟货币转账……造成的问题：个人隐私泄露以及财产安全。下面是CSRF的攻击模型简单来说CSRF攻击就是盗取你的cookie,并且利用你的一些权限去做一些有害的事情。那我们该如何">
+<meta property="og:description" content="本次记录攻防世界——supersqli,看一眼题目我们先输入1发现,没有问题。输入1’发现抱错经过查看wp,发现可以用堆叠注入,那我们就使用堆叠注入。构造payload:1’;show databases;#得到数据库接着爆表,构造payload:1’;show tables;#得到表后面发现select被过滤了,这里我们用到预编译的方法可绕过。payload:1’;prepare pre fro">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/images/1.png">
-<meta property="article:published_time" content="2022-02-27T15:18:02.000Z">
-<meta property="article:modified_time" content="2022-03-01T05:29:26.471Z">
+<meta property="og:image" content="http://example.com/images/3.png">
+<meta property="og:image" content="http://example.com/images/4.png">
+<meta property="og:image" content="http://example.com/images/5.png">
+<meta property="og:image" content="http://example.com/images/6.png">
+<meta property="article:published_time" content="2022-03-27T12:21:40.000Z">
+<meta property="article:modified_time" content="2022-03-27T12:43:27.888Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="DVWA最终章">
+<meta property="article:tag" content="浅记录一下吧,感觉水平还是很菜。">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/images/1.png">
+<meta name="twitter:image" content="http://example.com/images/3.png">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -76,10 +79,10 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-CSRF" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-攻防世界——supersqli" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2022/02/27/CSRF/" class="article-date">
-  <time class="dt-published" datetime="2022-02-27T15:18:02.000Z" itemprop="datePublished">2022-02-27</time>
+    <a href="/2022/03/27/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C%E2%80%94%E2%80%94supersqli/" class="article-date">
+  <time class="dt-published" datetime="2022-03-27T12:21:40.000Z" itemprop="datePublished">2022-03-27</time>
 </a>
     
   </div>
@@ -90,7 +93,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      CSRF
+      攻防世界——supersqli
     </h1>
   
 
@@ -98,16 +101,17 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p> 什么是CSRF呢？<br>CSRF全拼为Cross Site Request Forgery，译为跨站请求伪造。<br>CSRF指攻击者盗用了你的身份，以你的名义发送恶意请求。<br>包括：以你名义发送邮件，发消息，盗取你的账号，甚至于购买商品，虚拟货币转账……<br>造成的问题：个人隐私泄露以及财产安全。<br>下面是CSRF的攻击模型<br><img src="/images/1.png"><br>简单来说CSRF攻击就是盗取你的cookie,并且利用你的一些权限去做一些有害的事情。<br>那我们该如何防范CSRF攻击呢？<br>（1）验证 HTTP Referer 字段<br>  (2)在请求地址中添加token并验证<br>  (3)在HTTP头中添加自定义属性并验证</p>
+        <p>本次记录攻防世界——supersqli,看一眼题目<br><img src="/images/3.png"><br>我们先输入1发现,没有问题。输入1’发现抱错<br><img src="/images/4.png"><br>经过查看wp,发现可以用堆叠注入,那我们就使用堆叠注入。<br>构造payload:1’;show databases;#<br>得到数据库<br><img src="/images/5.png"><br>接着爆表,构造payload:1’;show tables;#<br>得到表<br><img src="/images/6.png"><br>后面发现select被过滤了,这里我们用到预编译的方法可绕过。<br>payload:1’;prepare pre from concat(‘s’, ‘elect * from <code>xxxxxxx</code>‘);execute pre;#(注意xxxx中旁边的是反引号);<br>即可获得flag。
+ </p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/02/27/CSRF/" data-id="cl07o56ep0000kovx04tyeruk" data-title="CSRF" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/03/27/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C%E2%80%94%E2%80%94supersqli/" data-id="cl19bcqs90000w8vxhvaadcwh" data-title="攻防世界——supersqli" class="article-share-link">Share</a>
       
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DVWA%E6%9C%80%E7%BB%88%E7%AB%A0/" rel="tag">DVWA最终章</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B5%85%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B%E5%90%A7-%E6%84%9F%E8%A7%89%E6%B0%B4%E5%B9%B3%E8%BF%98%E6%98%AF%E5%BE%88%E8%8F%9C%E3%80%82/" rel="tag">浅记录一下吧,感觉水平还是很菜。</a></li></ul>
 
     </footer>
   </div>
@@ -115,19 +119,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2022/03/08/%E9%BB%91%E7%9B%BE%E6%9D%AF%E8%A7%86%E9%A2%91%E5%AD%A6%E4%B9%A0/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          黑盾杯视频学习
-        
-      </div>
-    </a>
   
-  
-    <a href="/2022/02/25/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2022/03/08/%E9%BB%91%E7%9B%BE%E6%9D%AF%E8%A7%86%E9%A2%91%E5%AD%A6%E4%B9%A0/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">命令执行</div>
+      <div class="article-nav-title">黑盾杯视频学习</div>
     </a>
   
 </nav>
